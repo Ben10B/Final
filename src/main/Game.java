@@ -10,18 +10,15 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;
 	private Menu menu;
 	
-	private STATE gameState = STATE.Menu;
+	
 	
 	public Game(){
 		menu = new Menu(this);
-	
-		if(gameState == STATE.Game){
-			new Window(WIDTH, HEIGHT, "Game In Progress", this);
-			
-		}else if(gameState == STATE.Menu){
-			new Window(WIDTH, HEIGHT, "Menu", this, menu);
-		}
+
+		new Window(WIDTH, HEIGHT, "Menu", this, menu);
+		
 	}
+
 
 	public static final int WIDTH = 1040, HEIGHT = WIDTH-200;
 	public static void main(String[] args) {

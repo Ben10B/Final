@@ -1,6 +1,6 @@
 package main;
 
 public enum STATE {
-	Menu,
-	Game
+	Play,
+	Help
 }
