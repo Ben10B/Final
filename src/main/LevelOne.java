@@ -1,8 +1,18 @@
 package main;
 
-public class LevelOne {
+import java.awt.Color;
+import java.awt.Dimension;
 
-	public LevelOne(){
-		System.out.println("Level 1");
+import javax.swing.JPanel;
+
+public class LevelOne extends JPanel{
+
+	public LevelOne(Game game){
+		this.setBackground(Color.pink);
+		this.setPreferredSize(new Dimension(game.WIDTH, game.HEIGHT));
+		this.setVisible(true);
+	}
+	public void tick(){
+		
 	}
 }
