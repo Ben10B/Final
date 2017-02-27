@@ -13,9 +13,8 @@ import javax.swing.JButton;
 
 public class GameObject extends JButton implements TimeListener, PurifyListener{
 	
-	private boolean notAffected;
 	private STATUS state;
-	private int x, y;
+	private int x, y, invincibility = 180;
 	private Virus v;
 	
 	public GameObject(Virus virus){
@@ -39,15 +38,26 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 				}
 			}
 		});
-		
 	}
 
 	@Override
 	public void tick() {
-		if(v.getBounds().intersects(this.getBounds())){
-			state = STATUS.Affected;
+		if(collision()){
+			if(state == STATUS.Healthy){
+				state = STATUS.Affected;
+			}
+		}
+		if(state == STATUS.Purified){
+			invincibility--;
+		}
+		if(invincibility == 0){
+			state = STATUS.Healthy;
 		}
 	} 
+	
+	public boolean collision(){
+		return (v.getBounds().intersects(this.getBounds())) ? true : false;
+	}
 	
 	public void paint(Graphics g){
 		if(state == STATUS.Healthy){
@@ -63,6 +73,7 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
 			g.setColor(Color.white);
 			g.drawString("Purified!", 0, 30);
+			g.drawString(invincibility+"", 15, 15);
 		}
 		
 	}
@@ -73,5 +84,4 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 			state = STATUS.Purified;
 		}
 	}
-
 }
