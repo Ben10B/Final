@@ -25,7 +25,7 @@ public class Level extends JPanel{
 		
 		
 		GameObject go = new GameObject();
-		go.setBounds(200, 210, 31, 31);
+		go.setBounds(200, 210, 51, 51);
 		timeListeners.add(go);
 		this.add(go);
 		

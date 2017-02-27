@@ -43,6 +43,9 @@ public class Purify extends JFrame{
 				count++;
 				System.out.println(count);
 				victim.purify(count);
+				if(count == 5){
+					dispose();
+				}
 			}
 		});
 		//Once clicked, the button will be appear at a random coordinate... supposedly.
@@ -51,8 +54,8 @@ public class Purify extends JFrame{
 //				purifyButton.setLocation((int)Math.random() * 10, (int)Math.random() * 10);
 //			}
 //		});
-		
 		panel.add(purifyButton);
+		
 	}
 	
 	public void setVictim(PurifyListener p){
