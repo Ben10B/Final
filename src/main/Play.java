@@ -24,7 +24,7 @@ public class Play extends JFrame{
 		this.setTitle("Play");
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		Container c = this.getContentPane();
-		System.out.println("I'm in Play JFrame");
+		//System.out.println("I'm in Play JFrame");
 		
 		if(counter == 1){
 			lvl1 = new Level();

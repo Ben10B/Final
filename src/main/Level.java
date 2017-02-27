@@ -13,31 +13,34 @@ import javax.swing.Timer;
 public class Level extends JPanel{
 	Timer t;
 	ArrayList<TimeListener> timeListeners;
+	ArrayList<GameObject> go;
+	private int size = 12;
 	
 	public Level(){
 		timeListeners = new ArrayList<>();
 		this.setLayout(null);
 		
-		Virus a = new Virus();
-		a.setBounds(Game.WIDTH/2, Game.HEIGHT/2, 25, 25);
-		timeListeners.add(a);
-		this.add(a);
+		Virus v = new Virus();
+		v.setBounds(Game.WIDTH/2, Game.HEIGHT/2, 25, 25);
+		timeListeners.add(v);
+		this.add(v);
+		
+		go = new ArrayList<>();
+		for(int i = 0; i < size; i++){
+			int x = (int)(Math.random()*Game.WIDTH);
+			int y = (int)(Math.random()*Game.HEIGHT);
+			go.add(new GameObject(v));
+			go.get(i).setBounds(x, y, 51, 51);
+			
+			this.add(go.get(i));
+			timeListeners.add(go.get(i));
+		}
+//		GameObject go = new GameObject(a);
+//		go.setBounds(200, 210, 51, 51);
+//		timeListeners.add(go);
+//		this.add(go);
 		
 		
-		GameObject go = new GameObject(a);
-		go.setBounds(200, 210, 51, 51);
-		timeListeners.add(go);
-		this.add(go);
-		
-		GameObject go2 = new GameObject(a);
-		go2.setBounds(400, 210, 51, 51);
-		timeListeners.add(go2);
-		this.add(go2);
-		
-		GameObject go3 = new GameObject(a);
-		go3.setBounds(600, 210, 51, 51);
-		timeListeners.add(go3);
-		this.add(go3);
 		
 		
 		t = new Timer(100, new ActionListener(){

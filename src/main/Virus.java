@@ -7,11 +7,14 @@ import java.awt.Rectangle;
 import javax.swing.JComponent;
 
 public class Virus extends JComponent implements TimeListener{
+	private String still = "/main/img/virus1.jpg";
+	private Sprite virusSprite;
 	private int x, y, speedX, speedY;
 	
 	public Virus(){
-		speedX = 20;
+		speedX = 10;
 		speedY = speedX;
+		virusSprite = new Sprite(still);
 	}
 	
 	@Override
@@ -30,5 +33,6 @@ public class Virus extends JComponent implements TimeListener{
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.black);
 		g.drawString("Actor"+speedX+"", 0, 15);
+		//g.drawImage(virusSprite.getImg(), 0, 0, this.getWidth(), this.getHeight(),null);
 	}
 }
