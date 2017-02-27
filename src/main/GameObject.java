@@ -11,7 +11,7 @@ import javax.swing.JButton;
 
 public class GameObject extends JButton implements TimeListener, PurifyListener{
 	
-	private boolean notAffected = false;
+	private boolean notAffected;
 	private int x, y;
 	
 	public GameObject(){
@@ -49,9 +49,11 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 	}
 
 	@Override
-	public void purify() {
-		// TODO Auto-generated method stub
-		
+	public void purify(int count) {
+		if(count == 5){
+			notAffected = true;
+		}else
+			notAffected = false;
 	}
 
 }

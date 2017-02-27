@@ -1,5 +1,5 @@
 package main;
 
 public interface PurifyListener {
-	void purify();
+	void purify(int count);
 }
