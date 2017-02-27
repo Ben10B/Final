@@ -9,32 +9,48 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 
-public class GameObject extends JButton implements TimeListener{
+public class GameObject extends JButton implements TimeListener, PurifyListener{
 	
-	private boolean isAffected = false;
+	private boolean notAffected = false;
 	private int x, y;
 	
 	public GameObject(){
+		GameObject me = this;
 		this.x = this.getX();
 		this.y = this.getY();
 		
 		this.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent m) {
-				System.out.println("Clicked");
-				
+				if(notAffected){
+					System.out.println("I'm good homie");
+				}else{
+					Purify p = new Purify();
+					p.setVictim(me);
+					p.setVisible(true);
+				}
 			}
 		});
 	}
 
 	public void paint(Graphics g){
-		g.setColor(Color.white);
-		g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 30, 30);
-
+		if(notAffected){
+			g.setColor(Color.black);
+			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 30, 30);
+		}else{
+			g.setColor(Color.decode("#00ff00"));
+			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 30, 30);
+		}
 	}
 
 	@Override
 	public void tick() {
 		
+		
+	}
+
+	@Override
+	public void purify() {
+		// TODO Auto-generated method stub
 		
 	}
 
