@@ -3,6 +3,8 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,12 +16,13 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 	private boolean notAffected;
 	private STATUS state;
 	private int x, y;
-	Virus v;
+	private Virus v;
 	
-	public GameObject(){
+	public GameObject(Virus virus){
 		GameObject me = this;
 		this.x = this.getX();
 		this.y = this.getY();
+		this.v = virus;
 		state = STATUS.Healthy;
 		
 		addMouseListener(new MouseAdapter(){
@@ -36,11 +39,14 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 				}
 			}
 		});
+		
 	}
 
 	@Override
 	public void tick() {
-		
+		if(v.getBounds().intersects(this.getBounds())){
+			state = STATUS.Affected;
+		}
 	} 
 	
 	public void paint(Graphics g){
@@ -58,6 +64,7 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 			g.setColor(Color.white);
 			g.drawString("Purified!", 0, 30);
 		}
+		
 	}
 
 	@Override
@@ -67,7 +74,4 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 		}
 	}
 
-	public Rectangle getBounds(){
-		return new Rectangle(x, y, this.getWidth(), this.getHeight());
-	}
 }

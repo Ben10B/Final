@@ -12,9 +12,10 @@ import javax.swing.WindowConstants;
 public class Window{
 
 	public static void main(String[] args){
-		Game g = new Game();
+		Play g = new Play();
+		//Game g = new Game();
 		g.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		g.setTitle("Menu");
+		//g.setTitle("Menu");
 		g.setPreferredSize(new Dimension(1040, 840));
 		g.setMaximumSize(new Dimension(1040, 840));
 		g.setMinimumSize(new Dimension(1040, 840));
