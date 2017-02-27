@@ -6,10 +6,10 @@ import java.awt.Rectangle;
 
 import javax.swing.JComponent;
 
-public class Actor extends JComponent implements TimeListener{
+public class Virus extends JComponent implements TimeListener{
 	private int x, y, speedX, speedY;
 	
-	public Actor(){
+	public Virus(){
 		x = this.getX();
 		y = this.getY();
 		speedX = 10;
@@ -33,7 +33,8 @@ public class Actor extends JComponent implements TimeListener{
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.black);
 		g.drawString("Actor"+speedX+"", 0, 15);
-		
-		
+	}
+	public Rectangle getBounds(){
+		return new Rectangle(x, y, this.getWidth(), this.getHeight());
 	}
 }

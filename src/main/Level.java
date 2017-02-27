@@ -18,7 +18,7 @@ public class Level extends JPanel{
 		timeListeners = new ArrayList<>();
 		this.setLayout(null);
 		
-		Actor a = new Actor();
+		Virus a = new Virus();
 		a.setBounds(Game.WIDTH/2, Game.HEIGHT/2, 25, 25);
 		timeListeners.add(a);
 		this.add(a);

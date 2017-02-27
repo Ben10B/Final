@@ -20,14 +20,6 @@ public class Game extends JFrame{
 	
 	public Game(){
 		Game me = this;
-		Play lvl = new Play();
-		lvl.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		lvl.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		lvl.setMaximumSize(new Dimension(WIDTH, HEIGHT));
-		lvl.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-		lvl.setLocationRelativeTo(null);
-		lvl.setResizable(false);
-		lvl.setVisible(true);
 //		Container c = this.getContentPane();
 //		JPanel panel1 = new JPanel();
 //		panel1.setBackground(Color.cyan);

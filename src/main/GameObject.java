@@ -14,7 +14,7 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 	private boolean notAffected;
 	private STATUS state;
 	private int x, y;
-	Actor a;
+	Virus v;
 	
 	public GameObject(){
 		GameObject me = this;
@@ -38,6 +38,11 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 		});
 	}
 
+	@Override
+	public void tick() {
+		
+	} 
+	
 	public void paint(Graphics g){
 		if(state == STATUS.Healthy){
 			g.setColor(Color.black);
@@ -56,16 +61,13 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 	}
 
 	@Override
-	public void tick() {
-		
-		
-	}
-
-	@Override
 	public void purify(int count) {
 		if(count >= 5){
 			state = STATUS.Purified;
 		}
 	}
 
+	public Rectangle getBounds(){
+		return new Rectangle(x, y, this.getWidth(), this.getHeight());
+	}
 }
