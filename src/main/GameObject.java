@@ -2,12 +2,9 @@ package main;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 
@@ -16,6 +13,7 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 	private STATUS state;
 	private int x, y, invincibility = 180;
 	private Virus v;
+	private Random r;
 	
 	public GameObject(Virus virus){
 		GameObject me = this;
@@ -23,14 +21,15 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 		this.y = this.getY();
 		this.v = virus;
 		state = STATUS.Healthy;
+		r = new Random();
 		
-		addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent m) {
+		this.addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent m) {
 				if(state == STATUS.Healthy){
 					System.out.println(state+": I'm good homie");
 				}else if(state == STATUS.Affected){
 					System.out.println(state+": Help me!");
-					Purify p = new Purify();
+					PurifyObject p = new PurifyObject();
 					p.setVictim(me);
 					p.setVisible(true);
 				}else{
@@ -38,6 +37,7 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 				}
 			}
 		});
+		
 	}
 
 	@Override
@@ -53,6 +53,8 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 		if(invincibility == 0){
 			state = STATUS.Healthy;
 		}
+		
+		
 	} 
 	
 	public boolean collision(){
@@ -80,7 +82,7 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 
 	@Override
 	public void purify(int count) {
-		if(count >= 5){
+		if(count >= 3){
 			state = STATUS.Purified;
 		}
 	}

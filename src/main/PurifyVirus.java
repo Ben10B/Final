@@ -13,16 +13,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class Purify extends JFrame{
+public class PurifyVirus extends JFrame{
 	
 	private final int WIDTH = 150, HEIGHT = WIDTH+100;
-	private PurifyListener victim;
+	private PurifyListener virus;
 	private JPanel panel;
 	private JTextArea text;
 	private JButton purifyButton;
 	private int count = 0;
 	
-	public Purify(){
+	public PurifyVirus(){
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setBackground(Color.pink);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -36,29 +36,23 @@ public class Purify extends JFrame{
 		panel.setBackground(Color.pink);
 		c.add(panel);
 		
-		purifyButton = new JButton("Purify!");
+		purifyButton = new JButton("Freeze!");
 		purifyButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				count++;
 				System.out.println(count);
-				victim.purify(count);
-				if(count == 5){
+				virus.purify(count);
+				if(count == 15){
 					dispose();
 				}
 			}
 		});
-		//Once clicked, the button will be appear at a random coordinate... supposedly.
-//		purifyButton.addMouseListener(new MouseAdapter(){
-//			public void mouseClicked(MouseEvent m) {
-//				purifyButton.setLocation((int)Math.random() * 10, (int)Math.random() * 10);
-//			}
-//		});
 		panel.add(purifyButton);
-		
+		this.pack();
 	}
 	
 	public void setVictim(PurifyListener p){
-		this.victim = p;
+		this.virus = p;
 	}
 }
