@@ -17,6 +17,7 @@ public class PurifyVirus extends JFrame{
 	
 	private final int WIDTH = 150, HEIGHT = WIDTH+100;
 	private PurifyListener virus;
+	private KillListener killVirus;
 	private JPanel panel;
 	private JTextArea text;
 	private JButton freezeButton, finalPurification;
@@ -55,22 +56,23 @@ public class PurifyVirus extends JFrame{
 				}
 			}
 		});
-		freezeButton.setPreferredSize(new Dimension(WIDTH, HEIGHT-150));
+		freezeButton.setPreferredSize(new Dimension(WIDTH, HEIGHT-180));
 		panel.add(freezeButton);
 		
 		
-		
-//		if(virus.getCount() == 0){
-//			finalPurification = new JButton("Purify!");
-//			finalPurification.addActionListener(new ActionListener(){
-//				@Override
-//				public void actionPerformed(ActionEvent arg) {
-//					System.out.println("this beats the virus");
-//				}
-//			});
-//			finalPurification.setPreferredSize(new Dimension(WIDTH, HEIGHT-150));
-//		}
-//		panel.add(finalPurification);
+		finalPurification = new JButton("Purify!");
+		finalPurification.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg) {
+				if(killVirus.kill() == 0){
+					System.out.println("this beats the virus");						
+				}else{
+					freezeLabel.setText("Freeze the Virus first!!");
+				}
+			}
+		});
+		finalPurification.setPreferredSize(new Dimension(WIDTH, HEIGHT-180));
+		panel.add(finalPurification);
 		
 		
 		this.pack();
@@ -78,5 +80,8 @@ public class PurifyVirus extends JFrame{
 	
 	public void setVirus(PurifyListener p){
 		this.virus = p;
+	}
+	public void killVirus(KillListener k){
+		this.killVirus = k;
 	}
 }
