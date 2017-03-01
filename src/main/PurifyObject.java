@@ -24,7 +24,6 @@ public class PurifyObject extends JFrame{
 	
 	public PurifyObject(){
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setBackground(Color.pink);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
@@ -41,7 +40,6 @@ public class PurifyObject extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				count++;
-				System.out.println(count);
 				victim.purify(count);
 				if(count == 3){
 					dispose();

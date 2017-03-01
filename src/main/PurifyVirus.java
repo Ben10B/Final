@@ -1,15 +1,15 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -19,12 +19,11 @@ public class PurifyVirus extends JFrame{
 	private PurifyListener virus;
 	private JPanel panel;
 	private JTextArea text;
-	private JButton purifyButton;
+	private JButton freezeButton, finalPurification;
 	private int count = 0;
 	
 	public PurifyVirus(){
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setBackground(Color.pink);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
@@ -33,26 +32,51 @@ public class PurifyVirus extends JFrame{
 		Container c = this.getContentPane();
 		
 		panel = new JPanel();
-		panel.setBackground(Color.pink);
+		panel.setBackground(Color.green);
 		c.add(panel);
 		
-		purifyButton = new JButton("Freeze!");
-		purifyButton.addActionListener(new ActionListener(){
+		//Freeze Counter Label
+		JLabel freezeLabel = new JLabel();
+		freezeLabel.setText(""+count);
+		this.add(freezeLabel, BorderLayout.SOUTH);
+		
+		//Freeze Button
+		freezeButton = new JButton("Freeze!");
+		freezeButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				count++;
-				System.out.println(count);
+				freezeLabel.setText(Integer.toString(count));
+				freezeLabel.invalidate();
 				virus.purify(count);
+				
 				if(count == 15){
 					dispose();
 				}
 			}
 		});
-		panel.add(purifyButton);
+		freezeButton.setPreferredSize(new Dimension(WIDTH, HEIGHT-150));
+		panel.add(freezeButton);
+		
+		
+		
+//		if(virus.getCount() == 0){
+//			finalPurification = new JButton("Purify!");
+//			finalPurification.addActionListener(new ActionListener(){
+//				@Override
+//				public void actionPerformed(ActionEvent arg) {
+//					System.out.println("this beats the virus");
+//				}
+//			});
+//			finalPurification.setPreferredSize(new Dimension(WIDTH, HEIGHT-150));
+//		}
+//		panel.add(finalPurification);
+		
+		
 		this.pack();
 	}
 	
-	public void setVictim(PurifyListener p){
+	public void setVirus(PurifyListener p){
 		this.virus = p;
 	}
 }
