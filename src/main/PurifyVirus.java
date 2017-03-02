@@ -24,7 +24,7 @@ public class PurifyVirus extends JFrame{
 	private int count = 0;
 	
 	public PurifyVirus(){
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
@@ -59,7 +59,7 @@ public class PurifyVirus extends JFrame{
 		freezeButton.setPreferredSize(new Dimension(WIDTH, HEIGHT-180));
 		panel.add(freezeButton);
 		
-		
+		//Kill Button
 		finalPurification = new JButton("Purify!");
 		finalPurification.addActionListener(new ActionListener(){
 			@Override
