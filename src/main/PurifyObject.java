@@ -17,7 +17,7 @@ import javax.swing.WindowConstants;
 public class PurifyObject extends JFrame{
 	
 	private final int WIDTH = 150, HEIGHT = WIDTH+100;
-	private PurifyListener victim;
+	private CureListener victim;
 	private JPanel panel;
 	private JTextArea text;
 	private JButton purifyButton;
@@ -41,7 +41,7 @@ public class PurifyObject extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				count++;
-				victim.purify(count);
+				victim.cure(count);
 				if(count == 3){
 					dispose();
 				}
@@ -57,7 +57,7 @@ public class PurifyObject extends JFrame{
 		this.pack();
 	}
 	
-	public void setVictim(PurifyListener p){
+	public void setVictim(CureListener p){
 		this.victim = p;
 	}
 }

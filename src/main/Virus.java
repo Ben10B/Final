@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class Virus extends JButton implements TimeListener, PurifyListener, KillListener{
+public class Virus extends JButton implements TimeListener, PurifyListener{
 	private String still = "/main/img/virus1.png";
 	private Sprite virusSprite;
 	private int x, y, speedX, speedY, freeze = 180, count = 0;
@@ -22,7 +22,6 @@ public class Virus extends JButton implements TimeListener, PurifyListener, Kill
 			public void mousePressed(MouseEvent m) {
 				PurifyVirus pv = new PurifyVirus();
 				pv.setVirus(me);
-				pv.killVirus(me);
 				pv.setVisible(true);
 			}
 		});
@@ -31,7 +30,7 @@ public class Virus extends JButton implements TimeListener, PurifyListener, Kill
 	
 	
 	@Override
-	public void purify(int freezeCount) {
+	public void freeze(int freezeCount) {
 		// freezes the virus
 		if(freezeCount == 7){
 			speedX %= freezeCount;
@@ -68,4 +67,5 @@ public class Virus extends JButton implements TimeListener, PurifyListener, Kill
 	public int kill() {
 		return speedX;
 	}
+
 }

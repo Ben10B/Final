@@ -17,7 +17,6 @@ public class PurifyVirus extends JFrame{
 	
 	private final int WIDTH = 150, HEIGHT = WIDTH+100;
 	private PurifyListener virus;
-	private KillListener killVirus;
 	private JPanel panel;
 	private JTextArea text;
 	private JButton freezeButton, finalPurification;
@@ -49,7 +48,7 @@ public class PurifyVirus extends JFrame{
 				count++;
 				freezeLabel.setText(Integer.toString(count));
 				freezeLabel.invalidate();
-				virus.purify(count);
+				virus.freeze(count);
 				
 				if(count == 15){
 					dispose();
@@ -64,7 +63,7 @@ public class PurifyVirus extends JFrame{
 		finalPurification.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				if(killVirus.kill() == 0){
+				if(virus.kill() == 0){
 					System.out.println("this beats the virus");						
 				}else{
 					freezeLabel.setText("Freeze the Virus first!!");
@@ -78,10 +77,8 @@ public class PurifyVirus extends JFrame{
 		this.pack();
 	}
 	
-	public void setVirus(PurifyListener p){
-		this.virus = p;
-	}
-	public void killVirus(KillListener k){
-		this.killVirus = k;
+
+	public void setVirus(PurifyListener k){
+		this.virus = k;
 	}
 }

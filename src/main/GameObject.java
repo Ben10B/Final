@@ -8,7 +8,7 @@ import java.util.Random;
 
 import javax.swing.JButton;
 
-public class GameObject extends JButton implements TimeListener, PurifyListener{
+public class GameObject extends JButton implements TimeListener, CureListener{
 	
 	private STATUS state;
 	private int x, y, invincibility = 180;
@@ -81,7 +81,7 @@ public class GameObject extends JButton implements TimeListener, PurifyListener{
 	}
 
 	@Override
-	public void purify(int count) {
+	public void cure(int count) {
 		if(count >= 3){
 			state = STATUS.Purified;
 		}
