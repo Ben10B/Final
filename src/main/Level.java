@@ -1,10 +1,15 @@
 package main;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -13,10 +18,11 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 6;
+	private int size = 6, time = 3600;
 	private ArrayList<STATUSListener> gameObjects;
 	private PurifyListener virus;
 	private Play play;
+	private JLabel timeLabel;
 	
 	public Level(Play p){
 		Level me = this;
@@ -26,6 +32,11 @@ public class Level extends JPanel{
 		this.play = p;
 		r = new Random();
 		
+		timeLabel = new JLabel();
+		timeLabel.setForeground(Color.cyan);
+		timeLabel.setText("Time: "+time);
+		timeLabel.setBounds(10, 10, 100, 50);
+		this.add(timeLabel);
 		
 		Virus v = new Virus(play);
 		v.setBounds(Game.WIDTH/2, Game.HEIGHT/2, 35, 35);
@@ -55,6 +66,11 @@ public class Level extends JPanel{
 		t = new Timer(100, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
+				//time countdown
+				time--;
+				timeLabel.setText(Integer.toString(time));
+				timeLabel.invalidate();
+				//all tick methods
 				for(TimeListener tickee : timeListeners){
 					tickee.tick();
 				}repaint();
