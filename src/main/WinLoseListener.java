@@ -4,5 +4,5 @@ public interface WinLoseListener {
 	public enum WINLOSE{
 		Win, Lose
 	}
-	void WinLose();
+	void WinLose(WINLOSE wl);
 }

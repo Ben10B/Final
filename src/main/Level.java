@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -20,12 +21,11 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 6, time = 150;
+	private int size = 6, time = 180;
 	private ArrayList<STATUSListener> gameObjects;
 	private PurifyListener virus;
 	private Play play;
 	private JLabel timeLabel;
-	private WINLOSE winlose;
 	
 	public Level(Play p){
 		Level me = this;
@@ -55,7 +55,7 @@ public class Level extends JPanel{
 			if(x > 0 || y > 0 || x < Game.WIDTH || y < Game.HEIGHT){
 				go.get(i).setBounds(x, y, 51, 51);
 				//poisons the 4th object
-				//if(i == 4) go.get(i).setStatus2Affected();
+				if(i == 4) go.get(i).setStatus2Affected();
 				
 				this.add(go.get(i));
 				timeListeners.add(go.get(i));
@@ -87,19 +87,22 @@ public class Level extends JPanel{
 						curedObjects -= 1;
 					}
 				}
-				if(time == 0){
-					winlose = WINLOSE.Lose;
+				
+				WinLoseScenario wlScenario = new WinLoseScenario();
+				if(time == 0 && curedObjects != gameObjects.size()){
+					wlScenario.WinLose(WINLOSE.Lose);
 					t.stop();
 					timeLabel.setText("Game Over!");
 				}else if(time == 0 && curedObjects == gameObjects.size()){
+					wlScenario.WinLose(WINLOSE.Win);
 					t.stop();
 				}else if(curedObjects == gameObjects.size() && virus.purify() == 0){
-					t.stop();
+					wlScenario.WinLose(WINLOSE.Win);
 				}
 			}
 		});
 		
 		t.start();
+		
 	}
-	
 }

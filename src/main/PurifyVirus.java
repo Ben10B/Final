@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 
+import main.WinLoseListener.WINLOSE;
+
 public class PurifyVirus extends JFrame{
 	
 	private final int WIDTH = 150, HEIGHT = WIDTH+100;
@@ -67,7 +69,9 @@ public class PurifyVirus extends JFrame{
 		finalPurification.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
+				WinLoseScenario wlScenario = new WinLoseScenario();
 				if(virus.purify() == 0){
+					wlScenario.WinLose(WINLOSE.Win);
 					dispose();
 					play.dispose();
 					End win = new End();
