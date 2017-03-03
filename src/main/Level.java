@@ -13,16 +13,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import main.WinLoseListener.WINLOSE;
+
 public class Level extends JPanel{
 	private Timer t;
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 6, time = 3600;
+	private int size = 6, time = 150;
 	private ArrayList<STATUSListener> gameObjects;
 	private PurifyListener virus;
 	private Play play;
 	private JLabel timeLabel;
+	private WINLOSE winlose;
 	
 	public Level(Play p){
 		Level me = this;
@@ -34,7 +37,6 @@ public class Level extends JPanel{
 		
 		timeLabel = new JLabel();
 		timeLabel.setForeground(Color.cyan);
-		timeLabel.setText("Time: "+time);
 		timeLabel.setBounds(10, 10, 100, 50);
 		this.add(timeLabel);
 		
@@ -52,6 +54,7 @@ public class Level extends JPanel{
 			go.add(new GameObject(v));
 			if(x > 0 || y > 0 || x < Game.WIDTH || y < Game.HEIGHT){
 				go.get(i).setBounds(x, y, 51, 51);
+				//poisons the 4th object
 				//if(i == 4) go.get(i).setStatus2Affected();
 				
 				this.add(go.get(i));
@@ -68,7 +71,7 @@ public class Level extends JPanel{
 			public void actionPerformed(ActionEvent arg) {
 				//time countdown
 				time--;
-				timeLabel.setText(Integer.toString(time));
+				timeLabel.setText("Countdown: "+Integer.toString(time));
 				timeLabel.invalidate();
 				//all tick methods
 				for(TimeListener tickee : timeListeners){
@@ -84,7 +87,13 @@ public class Level extends JPanel{
 						curedObjects -= 1;
 					}
 				}
-				if(curedObjects == gameObjects.size() && virus.purify() == 0){
+				if(time == 0){
+					winlose = WINLOSE.Lose;
+					t.stop();
+					timeLabel.setText("Game Over!");
+				}else if(time == 0 && curedObjects == gameObjects.size()){
+					t.stop();
+				}else if(curedObjects == gameObjects.size() && virus.purify() == 0){
 					t.stop();
 				}
 			}

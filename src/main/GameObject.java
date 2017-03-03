@@ -26,14 +26,14 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent m) {
 				if(state == STATUS.Healthy){
-					System.out.println(state+": I'm good homie");
+					System.out.println(state+": I'm good homie.");
 				}else if(state == STATUS.Affected){
 					System.out.println(state+": Help me!");
 					CureObject p = new CureObject();
 					p.setVictim(me);
 					p.setVisible(true);
 				}else{
-					System.out.println(state);
+					System.out.println(state+": I'm invincible!");
 				}
 			}
 		});
@@ -65,15 +65,18 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 	public void paint(Graphics g){
 		if(state == STATUS.Healthy){
 			g.setColor(Color.black);
-			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+			//g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		}else if(state == STATUS.Affected){
 			g.setColor(Color.decode("#00ff00"));
-			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+			//g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			g.setColor(Color.black);
 			g.drawString("Poisoned", 0, 30);
 		}else{
 			g.setColor(Color.black);
-			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+			//g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			g.setColor(Color.white);
 			g.drawString("Purified!", 0, 30);
 			g.drawString(invincibility+"", 15, 15);
