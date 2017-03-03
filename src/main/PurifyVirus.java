@@ -6,6 +6,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -67,10 +68,14 @@ public class PurifyVirus extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				if(virus.purify() == 0){
-					System.out.println("this beats the virus");
 					dispose();
 					play.dispose();
 					End win = new End();
+					win.setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT));
+					win.setMaximumSize(new Dimension(Game.WIDTH, Game.HEIGHT));
+					win.setMinimumSize(new Dimension(Game.WIDTH, Game.HEIGHT));
+					win.setLocationRelativeTo(null);
+					win.setResizable(false);
 					win.setVisible(true);
 				}else{
 					freezeLabel.setText("Freeze the Virus first!!");

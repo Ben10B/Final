@@ -59,11 +59,18 @@ public class Level extends JPanel{
 					tickee.tick();
 				}repaint();
 				//if all objects are cured, user wins
-//				for(STATUSListener gameO : gameObjects){
-//					if(gameO.getObjectStatus() == STATUS.Healthy){
-//						t.stop();
-//					}
-//				}
+				int curedObjects = 0;
+				for(STATUSListener gameO : gameObjects){
+					if(gameO.getObjectStatus() == STATUS.Healthy 
+							|| gameO.getObjectStatus() == STATUS.Purified && virus.purify() == 0){
+						curedObjects += 1;
+					}else if(gameO.getObjectStatus() == STATUS.Affected && virus.purify() == 0){
+						curedObjects -= 1;
+					}
+				}
+				if(curedObjects == gameObjects.size() && virus.purify() == 0){
+					t.stop();
+				}
 			}
 		});
 		
