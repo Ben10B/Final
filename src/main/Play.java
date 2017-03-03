@@ -26,14 +26,11 @@ public class Play extends JFrame{
 		Container c = this.getContentPane();
 		
 		if(counter == 1){
-			lvl1 = new Level();
+			lvl1 = new Level(this);
 			lvl1.setBackground(Color.GRAY);
 			c.add(lvl1);
 		}
 		this.pack();
 	}
 
-	public void render(){
-		
-	}
 }

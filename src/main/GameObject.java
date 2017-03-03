@@ -8,7 +8,7 @@ import java.util.Random;
 
 import javax.swing.JButton;
 
-public class GameObject extends JButton implements TimeListener, CureListener{
+public class GameObject extends JButton implements TimeListener, CureListener, STATUSListener{
 	
 	private STATUS state;
 	private int x, y, invincibility = 180;
@@ -29,7 +29,7 @@ public class GameObject extends JButton implements TimeListener, CureListener{
 					System.out.println(state+": I'm good homie");
 				}else if(state == STATUS.Affected){
 					System.out.println(state+": Help me!");
-					PurifyObject p = new PurifyObject();
+					CureObject p = new CureObject();
 					p.setVictim(me);
 					p.setVisible(true);
 				}else{
@@ -52,6 +52,7 @@ public class GameObject extends JButton implements TimeListener, CureListener{
 		}
 		if(invincibility == 0){
 			state = STATUS.Healthy;
+			invincibility = 180;
 		}
 		
 		
@@ -80,10 +81,17 @@ public class GameObject extends JButton implements TimeListener, CureListener{
 		
 	}
 
+	public void setStatus2Affected(){
+		state = STATUS.Affected;
+	}
 	@Override
 	public void cure(int count) {
 		if(count >= 3){
 			state = STATUS.Purified;
 		}
+	}
+	@Override
+	public STATUS getObjectStatus() {
+		return state;
 	}
 }

@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 
 public class PurifyVirus extends JFrame{
 	
@@ -21,14 +22,16 @@ public class PurifyVirus extends JFrame{
 	private JTextArea text;
 	private JButton freezeButton, finalPurification;
 	private int count = 0;
+	private Play play;
 	
-	public PurifyVirus(){
+	public PurifyVirus(Play p){
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
+		this.play = p;
 		Container c = this.getContentPane();
 		
 		panel = new JPanel();
@@ -63,8 +66,12 @@ public class PurifyVirus extends JFrame{
 		finalPurification.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				if(virus.kill() == 0){
-					System.out.println("this beats the virus");						
+				if(virus.purify() == 0){
+					System.out.println("this beats the virus");
+					dispose();
+					play.dispose();
+					End win = new End();
+					win.setVisible(true);
 				}else{
 					freezeLabel.setText("Freeze the Virus first!!");
 				}
@@ -73,10 +80,8 @@ public class PurifyVirus extends JFrame{
 		finalPurification.setPreferredSize(new Dimension(WIDTH, HEIGHT-180));
 		panel.add(finalPurification);
 		
-		
 		this.pack();
 	}
-	
 
 	public void setVirus(PurifyListener k){
 		this.virus = k;

@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 
-public class PurifyObject extends JFrame{
+public class CureObject extends JFrame{
 	
 	private final int WIDTH = 150, HEIGHT = WIDTH+100;
 	private CureListener victim;
@@ -23,7 +23,7 @@ public class PurifyObject extends JFrame{
 	private JButton purifyButton;
 	private int count = 0;
 	
-	public PurifyObject(){
+	public CureObject(){
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));

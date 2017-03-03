@@ -1,6 +1,6 @@
 package main;
 
 public interface PurifyListener {
-	int kill();
+	int purify();
 	void freeze(int count);
 }
