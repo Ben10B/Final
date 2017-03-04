@@ -21,7 +21,7 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 6, time = 180, cured;
+	private int size = 24, time = 1800, cured;
 	private ArrayList<STATUSListener> gameObjects;
 	private PurifyListener virus;
 	private Play play;
@@ -41,7 +41,7 @@ public class Level extends JPanel{
 		this.add(timeLabel);
 		
 		Virus v = new Virus(play, me);
-		v.setBounds(Game.WIDTH/2, Game.HEIGHT/2, 35, 35);
+		v.setBounds(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 35, 35);
 		this.virus = v;
 		timeListeners.add(v);
 		this.add(v);
