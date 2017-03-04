@@ -23,6 +23,11 @@ public class Play extends JFrame{
 	public Play(){
 		this.setTitle("Play");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT));
+		this.setMaximumSize(new Dimension(Game.WIDTH, Game.HEIGHT));
+		this.setMinimumSize(new Dimension(Game.WIDTH, Game.HEIGHT));
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
 		Container c = this.getContentPane();
 		
 		if(counter == 1){

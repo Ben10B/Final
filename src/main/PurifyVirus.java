@@ -26,8 +26,9 @@ public class PurifyVirus extends JFrame{
 	private JButton freezeButton, finalPurification;
 	private int count = 0;
 	private Play play;
+	private Level level;
 	
-	public PurifyVirus(Play p){
+	public PurifyVirus(Play p, Level lvl){
 		PurifyVirus me = this;
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -36,6 +37,7 @@ public class PurifyVirus extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.play = p;
+		this.level = lvl;
 		Container c = this.getContentPane();
 		
 		panel = new JPanel();
@@ -70,13 +72,17 @@ public class PurifyVirus extends JFrame{
 		finalPurification.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				if(virus.purify() == 0){
+				if(virus.purify() == 0 && level.areAllObjectsCured() == true){
+					lvl.t.stop();
 					dispose();
 					play.dispose();
 					End win = new End(null);
+					win.WinLose(WINLOSE.Win);
 					win.setVisible(true);
-				}else{
+				}else if(virus.purify() != 0){
 					freezeLabel.setText("Freeze the Virus first!!");
+				}else if(level.areAllObjectsCured() == false){
+					freezeLabel.setText("Cure the Objects!!");
 				}
 			}
 		});

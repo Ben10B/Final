@@ -13,6 +13,7 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 public class Game extends JFrame{
 	public static final int WIDTH = 1040, HEIGHT = WIDTH-200;
@@ -20,6 +21,12 @@ public class Game extends JFrame{
 	
 	public Game(){
 		Game me = this;
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
 		Container c = this.getContentPane();
 		JPanel panel1 = new JPanel();
 		panel1.setBackground(Color.cyan);
@@ -36,12 +43,6 @@ public class Game extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				Play lvl = new Play();
-				lvl.setDefaultCloseOperation(EXIT_ON_CLOSE);
-				lvl.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-				lvl.setMaximumSize(new Dimension(WIDTH, HEIGHT));
-				lvl.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-				lvl.setLocationRelativeTo(null);
-				lvl.setResizable(false);
 				lvl.setVisible(true);
 				me.dispose();
 			}

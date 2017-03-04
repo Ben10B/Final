@@ -4,14 +4,19 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class End extends JFrame implements WinLoseListener{
-	private JPanel win, lose;
+	private JPanel endPanel;
 	private String background = "/main/img/End.png";
 	private Sprite bg;
+	private JButton restartButton, menuButton, quitButton;
 
 	public End(Play play){
 		this.setTitle("The End");
@@ -24,8 +29,40 @@ public class End extends JFrame implements WinLoseListener{
 		bg = new Sprite(background);
 		Container c = this.getContentPane();
 		
-		win = new JPanel();
-		c.add(win);
+		endPanel = new JPanel();
+		c.add(endPanel);
+		
+		restartButton = new JButton("Play Again");
+		restartButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg) {
+				dispose();
+				Play play = new Play();
+				play.setVisible(true);
+			}
+		});
+		
+		menuButton = new JButton("Return to Menu");
+		menuButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg) {
+				dispose();
+				Game newGame = new Game();
+				newGame.setVisible(true);
+			}
+		});
+		
+		quitButton = new JButton("Quit");
+		quitButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg) {
+				System.exit(0);
+			}
+		});
+		
+		endPanel.add(restartButton);
+		endPanel.add(menuButton);
+		endPanel.add(quitButton);
 		
 		this.pack();
 	}

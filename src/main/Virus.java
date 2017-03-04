@@ -13,18 +13,20 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 	private String still = "/main/img/virus1.png";
 	private Sprite virusSprite;
 	private int x, y, speedX, speedY, freeze = 180, count = 0;
-	public Play play;
+	private Play play;
+	private Level lvl;
 	
-	public Virus(Play p){
+	public Virus(Play p, Level lvl){
 		Virus me = this;
 		this.play = p;
+		this.lvl = lvl;
 		speedX = 20;
 		speedY = speedX;
 		virusSprite = new Sprite(still);
 		
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent m) {
-				PurifyVirus pv = new PurifyVirus(play);
+				PurifyVirus pv = new PurifyVirus(play, lvl);
 				pv.setVirus(me);
 				pv.setVisible(true);
 			}

@@ -17,11 +17,11 @@ import javax.swing.Timer;
 import main.WinLoseListener.WINLOSE;
 
 public class Level extends JPanel{
-	private Timer t;
+	public Timer t;
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 6, time = 18;
+	private int size = 6, time = 180, cured;
 	private ArrayList<STATUSListener> gameObjects;
 	private PurifyListener virus;
 	private Play play;
@@ -40,7 +40,7 @@ public class Level extends JPanel{
 		timeLabel.setBounds(10, 10, 100, 50);
 		this.add(timeLabel);
 		
-		Virus v = new Virus(play);
+		Virus v = new Virus(play, me);
 		v.setBounds(Game.WIDTH/2, Game.HEIGHT/2, 35, 35);
 		this.virus = v;
 		timeListeners.add(v);
@@ -85,31 +85,31 @@ public class Level extends JPanel{
 						curedObjects += 1;
 					}else if(gameO.getObjectStatus() == STATUS.Affected && virus.purify() == 0){
 						curedObjects -= 1;
-					}
+					}cured = curedObjects;
 				}
 				
 				End wlScenario = new End(play);
 				if(time == 0 && curedObjects != gameObjects.size()){
-					wlScenario.WinLose(WINLOSE.Lose);
 					t.stop();
-					timeLabel.setText("Game Over: L!");
 					play.dispose();
+					wlScenario.WinLose(WINLOSE.Lose);
 					wlScenario.setVisible(true);
 				}else if(time == 0 && curedObjects == gameObjects.size()){
-					wlScenario.WinLose(WINLOSE.Win);
 					t.stop();
-					timeLabel.setText("Game Over: W!");
 					play.dispose();
+					wlScenario.WinLose(WINLOSE.Win);
 					wlScenario.setVisible(true);
 				}else if(curedObjects == 0){
-					wlScenario.WinLose(WINLOSE.Lose);
 					t.stop();
-					timeLabel.setText("Game Over: L!");
 					play.dispose();
+					wlScenario.WinLose(WINLOSE.Lose);
 					wlScenario.setVisible(true);
 				}
 			}
 		});
 		t.start();
+	}
+	public boolean areAllObjectsCured() {
+		return (cured == gameObjects.size()) ? true : false;
 	}
 }
