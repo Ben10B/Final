@@ -28,6 +28,7 @@ public class PurifyVirus extends JFrame{
 	private Play play;
 	
 	public PurifyVirus(Play p){
+		PurifyVirus me = this;
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -69,17 +70,10 @@ public class PurifyVirus extends JFrame{
 		finalPurification.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				WinLoseScenario wlScenario = new WinLoseScenario();
 				if(virus.purify() == 0){
-					wlScenario.WinLose(WINLOSE.Win);
 					dispose();
 					play.dispose();
-					End win = new End();
-					win.setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT));
-					win.setMaximumSize(new Dimension(Game.WIDTH, Game.HEIGHT));
-					win.setMinimumSize(new Dimension(Game.WIDTH, Game.HEIGHT));
-					win.setLocationRelativeTo(null);
-					win.setResizable(false);
+					End win = new End(null);
 					win.setVisible(true);
 				}else{
 					freezeLabel.setText("Freeze the Virus first!!");
