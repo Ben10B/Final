@@ -33,10 +33,11 @@ public class CureObject extends JFrame{
 		Container c = this.getContentPane();
 		
 		panel = new JPanel();
-		panel.setBackground(Color.pink);
+		panel.setBackground(Color.green);
 		c.add(panel);
 		
 		purifyButton = new JButton("Cure!");
+		purifyButton.setBackground(Color.cyan);
 		purifyButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {

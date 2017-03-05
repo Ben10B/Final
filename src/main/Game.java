@@ -51,14 +51,15 @@ public class Game extends JFrame{
 		helpButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				System.out.println("Help");
+				Help help = new Help(me);
+				help.setVisible(true);
+				me.setVisible(false);
 			}
 		});
 		quitButton = new JButton("Quit");
 		quitButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				System.out.println("Quit");
 				System.exit(0);
 			}
 		});

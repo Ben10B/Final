@@ -1,15 +1,17 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class End extends JFrame implements WinLoseListener{
@@ -36,9 +38,9 @@ public class End extends JFrame implements WinLoseListener{
 		restartButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				dispose();
 				Play play = new Play();
 				play.setVisible(true);
+				dispose();
 			}
 		});
 		
@@ -46,9 +48,9 @@ public class End extends JFrame implements WinLoseListener{
 		menuButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				dispose();
 				Game newGame = new Game();
 				newGame.setVisible(true);
+				dispose();
 			}
 		});
 		
@@ -86,7 +88,14 @@ public class End extends JFrame implements WinLoseListener{
 	@Override
 	public void paint(Graphics g){
 		g.drawImage(bg.getImg(), 0, 0, this.getWidth(), this.getHeight(), null);
+		Font fnt = new Font("Arial", 1, 50);
+		g.setFont(fnt);
 		g.setColor(Color.cyan);
-		g.drawString("Game Over: You "+scenario+"!", 480, 120);
+		
+		g.drawString("^", 415, 130);
+		g.drawString("^", 515, 130);
+		g.drawString("^", 615, 130);
+		g.drawString("Game Over: You "+scenario+"!", 260, 180);
 	}
+	
 }

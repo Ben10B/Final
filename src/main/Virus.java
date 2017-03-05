@@ -1,27 +1,34 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 public class Virus extends JButton implements TimeListener, PurifyListener{
 	private String still = "/main/img/virus1.png";
 	private Sprite virusSprite;
-	private int x, y, speedX, speedY, freeze = 180, count = 0;
+	private int x, y, speedX, speedY, freeze = 120, count = 0;
 	private Play play;
 	private Level lvl;
+	private Random r = new Random();
 	
 	public Virus(Play p, Level lvl){
 		Virus me = this;
 		this.play = p;
 		this.lvl = lvl;
-		speedX = 20;
-		speedY = speedX;
+		
+		if(r.nextInt(9)+1 < 6){
+			speedX = 20;
+			speedY = speedX;
+		}else{
+			speedX = -20;
+			speedY = speedX;
+		}
+		
 		virusSprite = new Sprite(still);
 		
 		this.addMouseListener(new MouseAdapter(){
@@ -55,7 +62,7 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 		if(speedX == 0){
 			freeze--;
 			if(freeze == 0){
-				speedX = 15;
+				speedX = 20;
 				speedY = speedX;
 			}
 		}
@@ -66,7 +73,6 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 	public void paint(Graphics g){
 		g.drawImage(virusSprite.getImg(), 0, 0, this.getWidth(), this.getHeight(),null);
 	}
-
 
 	@Override
 	public int purify() {

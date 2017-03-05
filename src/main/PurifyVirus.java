@@ -73,12 +73,12 @@ public class PurifyVirus extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				if(virus.purify() == 0 && level.areAllObjectsCured() == true){
-					lvl.t.stop();
-					dispose();
-					play.dispose();
 					End win = new End(null);
 					win.WinLose(WINLOSE.Win);
 					win.setVisible(true);
+					lvl.t.stop();
+					dispose();
+					play.dispose();
 				}else if(virus.purify() != 0){
 					freezeLabel.setText("Freeze the Virus first!!");
 				}else if(level.areAllObjectsCured() == false){

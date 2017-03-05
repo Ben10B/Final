@@ -21,7 +21,7 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 24, time = 1800, cured;
+	private int size = 24, time = 18, cured;
 	private ArrayList<STATUSListener> gameObjects;
 	private PurifyListener virus;
 	private Play play;
@@ -76,7 +76,7 @@ public class Level extends JPanel{
 				//all tick methods
 				for(TimeListener tickee : timeListeners){
 					tickee.tick();
-				}repaint();
+				}
 				//if all objects are cured, user wins
 				int curedObjects = 0;
 				for(STATUSListener gameO : gameObjects){
@@ -90,21 +90,21 @@ public class Level extends JPanel{
 				
 				End wlScenario = new End(play);
 				if(time == 0 && curedObjects != gameObjects.size()){
-					t.stop();
-					play.dispose();
 					wlScenario.WinLose(WINLOSE.Lose);
 					wlScenario.setVisible(true);
-				}else if(time == 0 && curedObjects == gameObjects.size()){
 					t.stop();
 					play.dispose();
+				}else if(time == 0 && curedObjects == gameObjects.size()){
 					wlScenario.WinLose(WINLOSE.Win);
 					wlScenario.setVisible(true);
-				}else if(curedObjects == 0){
 					t.stop();
 					play.dispose();
+				}else if(curedObjects == 0){
 					wlScenario.WinLose(WINLOSE.Lose);
 					wlScenario.setVisible(true);
-				}
+					t.stop();
+					play.dispose();
+				}repaint();
 			}
 		});
 		t.start();
