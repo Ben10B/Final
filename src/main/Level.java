@@ -21,7 +21,7 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 24, time = 18, cured;
+	private int size = 24, time = 60, cured;
 	private ArrayList<STATUSListener> gameObjects;
 	private PurifyListener virus;
 	private Play play;
@@ -83,7 +83,7 @@ public class Level extends JPanel{
 					if(gameO.getObjectStatus() == STATUS.Healthy 
 							|| gameO.getObjectStatus() == STATUS.Purified && virus.purify() == 0){
 						curedObjects += 1;
-					}else if(gameO.getObjectStatus() == STATUS.Affected && virus.purify() == 0){
+					}else if(gameO.getObjectStatus() == STATUS.Effected && virus.purify() == 0){
 						curedObjects -= 1;
 					}cured = curedObjects;
 				}

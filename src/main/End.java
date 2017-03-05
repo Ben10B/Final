@@ -75,10 +75,8 @@ public class End extends JFrame implements WinLoseListener{
 		
 		if(wl == WINLOSE.Win){
 			this.scenario = wl;
-			System.out.println("Win");
 		}else{
 			this.scenario = wl;
-			System.out.println("Lose");
 		}
 	}
 	
@@ -87,6 +85,7 @@ public class End extends JFrame implements WinLoseListener{
 	}
 	@Override
 	public void paint(Graphics g){
+		super.paint(g);
 		g.drawImage(bg.getImg(), 0, 0, this.getWidth(), this.getHeight(), null);
 		Font fnt = new Font("Arial", 1, 50);
 		g.setFont(fnt);

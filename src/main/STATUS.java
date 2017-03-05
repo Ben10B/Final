@@ -2,6 +2,6 @@ package main;
 
 public enum STATUS {
 	Healthy,
-	Affected,
+	Effected,
 	Purified
 }

@@ -5,6 +5,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -67,5 +68,14 @@ public class Game extends JFrame{
 		panel2.add(helpButton);
 		panel2.add(quitButton);
 		c.add(panel2, BorderLayout.CENTER);
+	}
+	
+	@Override
+	public void paint(Graphics g){
+		super.paint(g);
+		Font fnt = new Font("Sylfaen", 1, 50);
+		g.setFont(fnt);
+		g.setColor(Color.black);
+		g.drawString("VIRUS PURIFICATION", 50, 150);
 	}
 }

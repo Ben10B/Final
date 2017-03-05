@@ -27,7 +27,7 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 			public void mousePressed(MouseEvent m) {
 				if(state == STATUS.Healthy){
 					System.out.println(state+": I'm good homie.");
-				}else if(state == STATUS.Affected){
+				}else if(state == STATUS.Effected){
 					System.out.println(state+": Help me!");
 					CureObject p = new CureObject();
 					p.setVictim(me);
@@ -44,7 +44,7 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 	public void tick() {
 		if(collision()){
 			if(state == STATUS.Healthy){
-				state = STATUS.Affected;
+				state = STATUS.Effected;
 			}
 		}
 		if(state == STATUS.Purified){
@@ -67,7 +67,7 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 			g.setColor(Color.black);
 			//g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		}else if(state == STATUS.Affected){
+		}else if(state == STATUS.Effected){
 			g.setColor(Color.decode("#00ff00"));
 			//g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
@@ -85,7 +85,7 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 	}
 
 	public void setStatus2Affected(){
-		state = STATUS.Affected;
+		state = STATUS.Effected;
 	}
 	@Override
 	public void cure(int count) {
