@@ -19,6 +19,8 @@ import javax.swing.WindowConstants;
 public class Game extends JFrame{
 	public static final int WIDTH = 1040, HEIGHT = WIDTH-200;
 	private JButton playButton, helpButton, quitButton;
+	private String background = "/main/img/Start.png";
+	private Sprite bg;
 	
 	public Game(){
 		Game me = this;
@@ -68,6 +70,7 @@ public class Game extends JFrame{
 		panel2.add(helpButton);
 		panel2.add(quitButton);
 		c.add(panel2, BorderLayout.CENTER);
+		bg = new Sprite(background);
 	}
 	
 	@Override
@@ -77,5 +80,6 @@ public class Game extends JFrame{
 		g.setFont(fnt);
 		g.setColor(Color.black);
 		g.drawString("VIRUS PURIFICATION", 50, 150);
+		g.drawImage(bg.getImg(), 0, 0, null);
 	}
 }
