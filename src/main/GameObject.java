@@ -94,6 +94,12 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 		}
 	}
 	@Override
+	public void cure(String cure) {
+		if(cure.equalsIgnoreCase("cure")){
+			state = STATUS.Purified;
+		}
+	}
+	@Override
 	public STATUS getObjectStatus() {
 		return state;
 	}

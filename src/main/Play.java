@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -28,6 +30,28 @@ public class Play extends JFrame{
 		this.setMinimumSize(new Dimension(Game.WIDTH, Game.HEIGHT));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
+		this.addKeyListener(new KeyListener(){
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				int key = e.getKeyCode();
+				if(key == KeyEvent.VK_P) System.out.println("Pressed");
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				int key = e.getKeyCode();
+				if(key == KeyEvent.VK_P) System.out.println("Released");
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int key = e.getKeyCode();
+				if(key == KeyEvent.VK_P) System.out.println("Typed");
+			}
+			
+		});
 		Container c = this.getContentPane();
 		
 		if(counter == 1){

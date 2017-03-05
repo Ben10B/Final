@@ -69,7 +69,7 @@ public class Help extends JFrame{
 		g.drawString("• To cure objects, a window will appear after clicking on it, then complete the action.", 25, 320);
 		g.drawString("• Once cured, the objects are immune to the Virus for a limited time.", 25, 360);
 		g.drawString("• To purify the Virus, first freeze it in it's tracks.", 25, 400);
-		g.drawString("• Clicking on the Virus will open a window with 2 options: FREEZE & PURIFY", 25, 440);
+		g.drawString("• Clicking on the Virus will open a window with 2 options: FREEZE & PURIFY.", 25, 440);
 		g.drawString("• Click the FREEZE button 15 times to halt the virus in order to cure the remaining poisoned objects.", 25, 480);
 		g.drawString("• Once the objects are cured and the Virus is stunned, time for VIRUS PURIFICATION!", 25, 520);
 		

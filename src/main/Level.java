@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,7 +23,7 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 24, time = 60, cured;
+	private int size = 24, time = 5600, cured;
 	private ArrayList<STATUSListener> gameObjects;
 	private PurifyListener virus;
 	private Play play;
@@ -40,11 +42,22 @@ public class Level extends JPanel{
 		timeLabel.setBounds(10, 10, 100, 50);
 		this.add(timeLabel);
 		
+		
 		Virus v = new Virus(play, me);
-		v.setBounds(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 35, 35);
 		this.virus = v;
-		timeListeners.add(v);
-		this.add(v);
+		boolean isWithinBounds = false;
+		while(!isWithinBounds){
+			int x = r.nextInt(Game.WIDTH-100);
+			int y = r.nextInt(Game.HEIGHT-100);
+			if(x > 0 && y > 0 && x < Game.WIDTH && y < Game.HEIGHT){
+				v.setBounds(x, y, 35, 35);
+				timeListeners.add(v);
+				this.add(v);
+				isWithinBounds = true;
+			}else{
+				isWithinBounds = false;
+			}
+		}
 		
 		go = new ArrayList<>();
 		int i = 0;
@@ -61,8 +74,6 @@ public class Level extends JPanel{
 				timeListeners.add(go.get(i));
 				gameObjects.add(go.get(i));
 				i++;
-			}else{
-				
 			}
 		}
 		
@@ -76,7 +87,7 @@ public class Level extends JPanel{
 				//all tick methods
 				for(TimeListener tickee : timeListeners){
 					tickee.tick();
-				}
+				}repaint();
 				//if all objects are cured, user wins
 				int curedObjects = 0;
 				for(STATUSListener gameO : gameObjects){
@@ -104,10 +115,12 @@ public class Level extends JPanel{
 					wlScenario.setVisible(true);
 					t.stop();
 					play.dispose();
-				}repaint();
+				}
 			}
 		});
 		t.start();
+		
+		
 	}
 	public boolean areAllObjectsCured() {
 		return (cured == gameObjects.size()) ? true : false;

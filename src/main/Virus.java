@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -22,10 +23,10 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 		this.lvl = lvl;
 		
 		if(r.nextInt(9)+1 < 6){
-			speedX = 20;
+			speedX = 30;
 			speedY = speedX;
 		}else{
-			speedX = -20;
+			speedX = -30;
 			speedY = speedX;
 		}
 		
@@ -71,6 +72,7 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 
 	@Override
 	public void paint(Graphics g){
+		//super.paint(g);
 		g.drawImage(virusSprite.getImg(), 0, 0, this.getWidth(), this.getHeight(),null);
 	}
 
