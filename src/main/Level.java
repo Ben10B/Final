@@ -3,6 +3,7 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +24,7 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 24, time = 5600, cured;
+	private int size = 24, time = 1800, cured;
 	private ArrayList<STATUSListener> gameObjects;
 	private PurifyListener virus;
 	private Play play;
@@ -39,7 +40,7 @@ public class Level extends JPanel{
 		
 		timeLabel = new JLabel();
 		timeLabel.setForeground(Color.cyan);
-		timeLabel.setBounds(10, 10, 100, 50);
+		timeLabel.setBounds(10, 10, 200, 50);
 		this.add(timeLabel);
 		
 		
@@ -47,9 +48,9 @@ public class Level extends JPanel{
 		this.virus = v;
 		boolean isWithinBounds = false;
 		while(!isWithinBounds){
-			int x = r.nextInt(Game.WIDTH-100);
-			int y = r.nextInt(Game.HEIGHT-100);
-			if(x > 0 && y > 0 && x < Game.WIDTH && y < Game.HEIGHT){
+			int x = r.nextInt(Game.WIDTH-100)+1;
+			int y = r.nextInt(Game.HEIGHT-100)+1;
+			if(x > 0 && y > 0 && x < Game.WIDTH-10 && y < Game.HEIGHT-10){
 				v.setBounds(x, y, 35, 35);
 				timeListeners.add(v);
 				this.add(v);
@@ -82,6 +83,8 @@ public class Level extends JPanel{
 			public void actionPerformed(ActionEvent arg) {
 				//time countdown
 				time--;
+				Font fnt = new Font("Sylfaen", 1, 20);
+				timeLabel.setFont(fnt);
 				timeLabel.setText("Countdown: "+Integer.toString(time));
 				timeLabel.invalidate();
 				//all tick methods
@@ -92,26 +95,21 @@ public class Level extends JPanel{
 				int curedObjects = 0;
 				for(STATUSListener gameO : gameObjects){
 					if(gameO.getObjectStatus() == STATUS.Healthy 
-							|| gameO.getObjectStatus() == STATUS.Purified && virus.purify() == 0){
+							|| gameO.getObjectStatus() == STATUS.Purified){
 						curedObjects += 1;
-					}else if(gameO.getObjectStatus() == STATUS.Effected && virus.purify() == 0){
+					}else if(gameO.getObjectStatus() == STATUS.Effected){
 						curedObjects -= 1;
 					}cured = curedObjects;
 				}
 				
 				End wlScenario = new End(play);
-				if(time == 0 && curedObjects != gameObjects.size()){
+				if(time == 0 && cured != gameObjects.size()){
 					wlScenario.WinLose(WINLOSE.Lose);
 					wlScenario.setVisible(true);
 					t.stop();
 					play.dispose();
-				}else if(time == 0 && curedObjects == gameObjects.size()){
+				}else if(time == 0 && cured == gameObjects.size()){
 					wlScenario.WinLose(WINLOSE.Win);
-					wlScenario.setVisible(true);
-					t.stop();
-					play.dispose();
-				}else if(curedObjects == 0){
-					wlScenario.WinLose(WINLOSE.Lose);
 					wlScenario.setVisible(true);
 					t.stop();
 					play.dispose();

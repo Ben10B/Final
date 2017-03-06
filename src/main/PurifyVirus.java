@@ -60,6 +60,7 @@ public class PurifyVirus extends JFrame{
 				virus.freeze(count);
 				
 				if(count == 15){
+					count = 0;
 					dispose();
 				}
 			}

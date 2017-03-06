@@ -12,9 +12,9 @@ import javax.swing.WindowConstants;
 public class Window{
 
 	public static void main(String[] args){
-		//Play g = new Play();
-		Game g = new Game();
-		g.setTitle("Menu");
+		Play g = new Play();
+//		Game g = new Game();
+//		g.setTitle("Menu");
 		g.setVisible(true);
 	}
 

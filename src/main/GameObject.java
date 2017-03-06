@@ -25,15 +25,10 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 		
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent m) {
-				if(state == STATUS.Healthy){
-					System.out.println(state+": I'm good homie.");
-				}else if(state == STATUS.Effected){
-					System.out.println(state+": Help me!");
+				if(state == STATUS.Effected){
 					CureObject p = new CureObject();
 					p.setVictim(me);
 					p.setVisible(true);
-				}else{
-					System.out.println(state+": I'm invincible!");
 				}
 			}
 		});
@@ -54,8 +49,6 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 			state = STATUS.Healthy;
 			invincibility = 180;
 		}
-		
-		
 	} 
 	
 	public boolean collision(){

@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -7,25 +8,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 public class CureObject extends JFrame{
 	
 	private final int WIDTH = 150, HEIGHT = WIDTH+100;
 	private CureListener victim;
 	private JPanel panel;
-	private JTextArea text;
 	private JButton purifyButton, cB, uB, rB, eB;
 	private int count = 0;
 	private String spellCure = "";
+	private String[] effected = {"Help me!", "I'm poisoned!", "Hurry up!"};
 	private Random r = new Random();
 	
 	public CureObject(){
+		this.setTitle("Cure");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -37,6 +40,10 @@ public class CureObject extends JFrame{
 		panel = new JPanel();
 		panel.setBackground(Color.green);
 		c.add(panel);
+		
+		JLabel label = new JLabel();
+		label.setText(effected[r.nextInt(3)]);
+		this.add(label, BorderLayout.SOUTH);
 		
 		int action = r.nextInt(2);
 		if(action == 0){
@@ -60,23 +67,27 @@ public class CureObject extends JFrame{
 			});
 			panel.add(purifyButton);
 		}else{
-			cB = new JButton("C");
-			cB.setActionCommand("C");
-			cB.addActionListener(new Concatenator());
-			panel.add(cB);
-			
-			uB = new JButton("U");
-			uB.setActionCommand("u");
-			uB.addActionListener(new Concatenator());
-			panel.add(uB);
-			
 			rB = new JButton("R");
 			rB.setActionCommand("r");
+			rB.addMouseListener(new ColorChange(rB));
 			rB.addActionListener(new Concatenator());
 			panel.add(rB);
 			
+			uB = new JButton("U");
+			uB.setActionCommand("u");
+			uB.addMouseListener(new ColorChange(uB));
+			uB.addActionListener(new Concatenator());
+			panel.add(uB);
+			
+			cB = new JButton("C");
+			cB.setActionCommand("C");
+			cB.addMouseListener(new ColorChange(cB));
+			cB.addActionListener(new Concatenator());
+			panel.add(cB);
+			
 			eB = new JButton("E");
 			eB.setActionCommand("e");
+			eB.addMouseListener(new ColorChange(eB));
 			eB.addActionListener(new Concatenator());
 			panel.add(eB);
 		}
@@ -91,6 +102,13 @@ public class CureObject extends JFrame{
 			if(spellCure.length() == 4){
 				dispose();
 			}	
+		}
+	}
+	private final class ColorChange extends MouseAdapter {
+		private JButton b;
+		public ColorChange(JButton b){this.b = b;}
+		public void mousePressed(MouseEvent m){
+			b.setBackground(Color.cyan);
 		}
 	}
 	
