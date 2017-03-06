@@ -47,7 +47,7 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 		// freezes the virus
 		if(freezeCount == 7){
 			speedX %= freezeCount;
-			speedY = speedX;
+			speedY %= freezeCount;
 		}
 		if(freezeCount == 15){
 			speedX = 0;
@@ -58,7 +58,7 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 	@Override
 	public void tick() {
 		//x > 0 && y > 0 && x < Game.WIDTH && y < Game.HEIGHT
-		if(this.getX() <= 21 || this.getX() >= Game.WIDTH-70) speedX *= -1;
+		if(this.getX() <= 21 || this.getX() >= Game.WIDTH-65) speedX *= -1;
 		if(this.getY() <= 21 || this.getY() >= Game.HEIGHT-99) speedY *= -1;
 		
 		if(speedX == 0){

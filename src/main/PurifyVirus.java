@@ -74,6 +74,7 @@ public class PurifyVirus extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				if(virus.purify() == 0 && level.areAllObjectsCured() == true){
+					System.out.println(level.areAllObjectsCured());
 					End win = new End(null);
 					win.WinLose(WINLOSE.Win);
 					win.setVisible(true);

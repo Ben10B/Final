@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 
 public class End extends JFrame implements WinLoseListener{
 	private JPanel endPanel;
-	private String background = "/main/img/End.png";
-	private Sprite bg;
+	private String background = "/main/img/End.png", backgroundL = "/main/img/EndL.png";
+	private Sprite bg, bgL;
 	private JButton restartButton, menuButton, quitButton;
 
 	public End(Play play){
@@ -29,6 +29,7 @@ public class End extends JFrame implements WinLoseListener{
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		bg = new Sprite(background);
+		bgL = new Sprite(backgroundL);
 		Container c = this.getContentPane();
 		
 		endPanel = new JPanel();
@@ -86,15 +87,18 @@ public class End extends JFrame implements WinLoseListener{
 	@Override
 	public void paint(Graphics g){
 		super.paint(g);
-		g.drawImage(bg.getImg(), 0, 0, this.getWidth(), this.getHeight(), null);
+		if(scenario == WINLOSE.Win){
+			g.drawImage(bg.getImg(), 0, 0, this.getWidth(), this.getHeight(), null);
+			g.setColor(Color.cyan);
+		}else{
+			g.drawImage(bgL.getImg(), 0, 0, this.getWidth(), this.getHeight(), null);
+			g.setColor(Color.green);
+		}
 		Font fnt = new Font("Arial", 1, 50);
 		g.setFont(fnt);
-		g.setColor(Color.cyan);
-		
 		g.drawString("^", 415, 130);
 		g.drawString("^", 515, 130);
 		g.drawString("^", 615, 130);
 		g.drawString("Game Over: You "+scenario+"!", 260, 180);
 	}
-	
 }

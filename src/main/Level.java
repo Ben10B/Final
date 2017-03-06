@@ -24,13 +24,15 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 24, time = 1800, cured;
+	private int size = 24, time = 1200, cured;
 	private ArrayList<STATUSListener> gameObjects;
 	private PurifyListener virus;
 	private Play play;
 	private JLabel timeLabel;
+	private String background = "/main/img/playbg.png";
+	private Sprite bg = new Sprite(background);
 	
-	public Level(Play p){
+ 	public Level(Play p){
 		Level me = this;
 		timeListeners = new ArrayList<>();
 		gameObjects = new ArrayList<>();
@@ -40,7 +42,7 @@ public class Level extends JPanel{
 		
 		timeLabel = new JLabel();
 		timeLabel.setForeground(Color.cyan);
-		timeLabel.setBounds(10, 10, 200, 50);
+		timeLabel.setBounds(100, 10, 210, 50);
 		this.add(timeLabel);
 		
 		
@@ -83,7 +85,7 @@ public class Level extends JPanel{
 			public void actionPerformed(ActionEvent arg) {
 				//time countdown
 				time--;
-				Font fnt = new Font("Sylfaen", 1, 20);
+				Font fnt = new Font("Sylfaen", 1, 25);
 				timeLabel.setFont(fnt);
 				timeLabel.setText("Countdown: "+Integer.toString(time));
 				timeLabel.invalidate();
@@ -97,8 +99,6 @@ public class Level extends JPanel{
 					if(gameO.getObjectStatus() == STATUS.Healthy 
 							|| gameO.getObjectStatus() == STATUS.Purified){
 						curedObjects += 1;
-					}else if(gameO.getObjectStatus() == STATUS.Effected){
-						curedObjects -= 1;
 					}cured = curedObjects;
 				}
 				
@@ -113,14 +113,22 @@ public class Level extends JPanel{
 					wlScenario.setVisible(true);
 					t.stop();
 					play.dispose();
+				}else if(cured == 0){
+					wlScenario.WinLose(WINLOSE.Lose);
+					wlScenario.setVisible(true);
+					t.stop();
+					play.dispose();
 				}
 			}
 		});
 		t.start();
-		
-		
 	}
 	public boolean areAllObjectsCured() {
 		return (cured == gameObjects.size()) ? true : false;
+	}
+	@Override
+	public void paint(Graphics g){
+		super.paint(g);
+		g.drawImage(bg.getImg(), 0, 0, null);
 	}
 }
