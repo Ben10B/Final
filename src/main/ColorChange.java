@@ -23,4 +23,9 @@ public class ColorChange extends MouseAdapter {
 			g.setBackground(Color.green);
 		}
 	}
+	public void mouseExited(MouseEvent m){
+		if(b != null){
+			b.setBackground(Color.cyan);
+		}
+	}
 }

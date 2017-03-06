@@ -36,6 +36,7 @@ public class End extends JFrame implements WinLoseListener{
 		c.add(endPanel);
 		
 		restartButton = new JButton("Play Again");
+		restartButton.addMouseListener(new ColorChange(restartButton, restartButton));
 		restartButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -46,6 +47,7 @@ public class End extends JFrame implements WinLoseListener{
 		});
 		
 		menuButton = new JButton("Return to Menu");
+		menuButton.addMouseListener(new ColorChange(menuButton, menuButton));
 		menuButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -56,6 +58,7 @@ public class End extends JFrame implements WinLoseListener{
 		});
 		
 		quitButton = new JButton("Quit");
+		quitButton.addMouseListener(new ColorChange(quitButton, quitButton));
 		quitButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {

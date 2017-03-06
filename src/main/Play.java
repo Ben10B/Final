@@ -21,7 +21,7 @@ import javax.swing.WindowConstants;
 
 public class Play extends JFrame{
 	private int counter = 0;
-	private int time = 360;
+	private int time = 420;
 	private Level lvl;
 	public Timer t;
 	
