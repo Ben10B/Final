@@ -24,6 +24,7 @@ public class Game extends JFrame{
 	
 	public Game(){
 		Game me = this;
+		this.setTitle("Menu");
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));

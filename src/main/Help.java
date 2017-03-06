@@ -33,6 +33,7 @@ public class Help extends JFrame{
 		panel.setBackground(Color.cyan);
 		
 		backButton = new JButton("< Go back to Menu");
+		backButton.addMouseListener(new ColorChange(null, backButton));
 		backButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

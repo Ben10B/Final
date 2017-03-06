@@ -21,7 +21,9 @@ public class CureObject extends JFrame{
 	private final int WIDTH = 150, HEIGHT = WIDTH+100;
 	private CureListener victim;
 	private JPanel panel;
-	private JButton purifyButton, cB, uB, rB, eB;
+	private JButton purifyButton;
+	private JButton cB, uB, rB, eB;
+	private JButton greenB, blueB;
 	private int count = 0;
 	private String spellCure = "";
 	private String[] effected = {"Help me!", "I'm poisoned!", "Hurry up!"};
@@ -45,7 +47,7 @@ public class CureObject extends JFrame{
 		label.setText(effected[r.nextInt(3)]);
 		this.add(label, BorderLayout.SOUTH);
 		
-		int action = r.nextInt(2);
+		int action = r.nextInt(3);
 		if(action == 0){
 			purifyButton = new JButton("Cure!");
 			purifyButton.setBackground(Color.cyan);
@@ -66,7 +68,7 @@ public class CureObject extends JFrame{
 				}
 			});
 			panel.add(purifyButton);
-		}else{
+		}else if(action == 1){
 			rB = new JButton("R");
 			rB.setActionCommand("r");
 			rB.addMouseListener(new ColorChange(rB, null));
@@ -90,6 +92,25 @@ public class CureObject extends JFrame{
 			eB.addMouseListener(new ColorChange(eB, null));
 			eB.addActionListener(new Concatenator());
 			panel.add(eB);
+		}else if(action == 2){
+			greenB = new JButton("Ignore");
+			greenB.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					dispose();
+				}
+			});
+			panel.add(greenB);
+			
+			blueB = new JButton("Cure");
+			blueB.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					victim.cure("cure");
+					dispose();
+				}
+			});
+			panel.add(blueB);
 		}
 		this.pack();
 	}

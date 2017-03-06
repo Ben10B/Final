@@ -97,7 +97,7 @@ public class End extends JFrame implements WinLoseListener{
 		Font fnt = new Font("Arial", 1, 50);
 		g.setFont(fnt);
 		g.drawString("^", 415, 130);
-		g.drawString("^", 515, 130);
+		g.drawString("^", 525, 130);
 		g.drawString("^", 615, 130);
 		g.drawString("Game Over: You "+scenario+"!", 260, 180);
 	}

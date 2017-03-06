@@ -24,7 +24,7 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 24, cured/*, time = 1200*/;
+	private int size = 14, cured/*, time = 1200*/;
 	private ArrayList<STATUSListener> gameObjects;
 	private Play play;
 	//private JLabel timeLabel;

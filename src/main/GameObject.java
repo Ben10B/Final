@@ -11,14 +11,12 @@ import javax.swing.JButton;
 public class GameObject extends JButton implements TimeListener, CureListener, STATUSListener{
 	
 	private STATUS state;
-	private int x, y, invincibility = 180;
+	private int invincibility = 180;
 	private Virus v;
 	private Random r;
 	
 	public GameObject(Virus virus){
 		GameObject me = this;
-		this.x = this.getX();
-		this.y = this.getY();
 		this.v = virus;
 		state = STATUS.Healthy;
 		r = new Random();
@@ -32,7 +30,6 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 				}
 			}
 		});
-		
 	}
 
 	@Override
@@ -58,23 +55,22 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 	public void paint(Graphics g){
 		if(state == STATUS.Healthy){
 			g.setColor(Color.black);
-			//g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
-			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+//			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		}else if(state == STATUS.Effected){
 			g.setColor(Color.decode("#00ff00"));
-			//g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
-			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+			//g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			g.setColor(Color.black);
 			g.drawString("Poisoned", 0, 30);
 		}else{
 			g.setColor(Color.cyan);
-			//g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
-			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+			//g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			g.setColor(Color.black);
 			g.drawString("Purified!", 0, 30);
 			g.drawString(invincibility+"", 15, 15);
 		}
-		
 	}
 
 	public void setStatus2Affected(){

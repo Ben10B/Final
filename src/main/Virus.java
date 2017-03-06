@@ -56,7 +56,6 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 	
 	@Override
 	public void tick() {
-		//x > 0 && y > 0 && x < Game.WIDTH && y < Game.HEIGHT
 		if(this.getX() <= 21 || this.getX() >= Game.WIDTH-65) speedX *= -1;
 		if(this.getY() <= 21 || this.getY() >= Game.HEIGHT-99) speedY *= -1;
 		
