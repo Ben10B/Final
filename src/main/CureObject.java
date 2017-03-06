@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 public class CureObject extends JFrame{
 	
-	private final int WIDTH = 150, HEIGHT = WIDTH+100;
+	private final int WIDTH = 150, HEIGHT = 150;
 	private CureListener victim;
 	private JPanel panel;
 	private JButton purifyButton;
@@ -46,7 +46,7 @@ public class CureObject extends JFrame{
 		JLabel label = new JLabel();
 		label.setText(effected[r.nextInt(3)]);
 		this.add(label, BorderLayout.SOUTH);
-		
+		//This action gives the user a random different puzzle to solve to cure the object.
 		int action = r.nextInt(3);
 		if(action == 0){
 			purifyButton = new JButton("Cure!");
@@ -64,7 +64,7 @@ public class CureObject extends JFrame{
 			//Once clicked, the button will be appear at a random coordinate... supposedly.
 			purifyButton.addMouseListener(new MouseAdapter(){
 				public void mouseClicked(MouseEvent m) {
-					purifyButton.setLocation((int)(Math.random() * 150), (int)(Math.random() * 100));
+					purifyButton.setLocation((int)(Math.random() * 150), (int)(Math.random() * 50));
 				}
 			});
 			panel.add(purifyButton);
@@ -73,25 +73,38 @@ public class CureObject extends JFrame{
 			rB.setActionCommand("r");
 			rB.addMouseListener(new ColorChange(rB, null));
 			rB.addActionListener(new Concatenator());
-			panel.add(rB);
 			
 			uB = new JButton("U");
 			uB.setActionCommand("u");
 			uB.addMouseListener(new ColorChange(uB, null));
 			uB.addActionListener(new Concatenator());
-			panel.add(uB);
 			
 			cB = new JButton("C");
 			cB.setActionCommand("C");
 			cB.addMouseListener(new ColorChange(cB, null));
 			cB.addActionListener(new Concatenator());
-			panel.add(cB);
 			
 			eB = new JButton("E");
 			eB.setActionCommand("e");
 			eB.addMouseListener(new ColorChange(eB, null));
 			eB.addActionListener(new Concatenator());
-			panel.add(eB);
+			int order = r.nextInt(3);
+			if(order == 0){
+				panel.add(rB);
+				panel.add(uB);
+				panel.add(cB);
+				panel.add(eB);
+			}else if(order == 1){
+				panel.add(cB);
+				panel.add(uB);
+				panel.add(rB);
+				panel.add(eB);
+			}else if(order == 2){
+				panel.add(eB);
+				panel.add(cB);
+				panel.add(uB);
+				panel.add(rB);
+			}
 		}else if(action == 2){
 			greenB = new JButton("Ignore");
 			greenB.addActionListener(new ActionListener(){
@@ -100,7 +113,6 @@ public class CureObject extends JFrame{
 					dispose();
 				}
 			});
-			panel.add(greenB);
 			
 			blueB = new JButton("Cure");
 			blueB.addActionListener(new ActionListener(){
@@ -110,7 +122,14 @@ public class CureObject extends JFrame{
 					dispose();
 				}
 			});
-			panel.add(blueB);
+			int order = r.nextInt(2);
+			if(order == 0){
+				panel.add(blueB);
+				panel.add(greenB);
+			}else{
+				panel.add(greenB);
+				panel.add(blueB);
+			}
 		}
 		this.pack();
 	}
