@@ -24,11 +24,10 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 24, time = 1200, cured;
+	private int size = 24, cured/*, time = 1200*/;
 	private ArrayList<STATUSListener> gameObjects;
-	private PurifyListener virus;
 	private Play play;
-	private JLabel timeLabel;
+	//private JLabel timeLabel;
 	private String background = "/main/img/playbg.png";
 	private Sprite bg = new Sprite(background);
 	
@@ -40,14 +39,13 @@ public class Level extends JPanel{
 		this.play = p;
 		r = new Random();
 		
-		timeLabel = new JLabel();
-		timeLabel.setForeground(Color.cyan);
-		timeLabel.setBounds(100, 10, 210, 50);
-		this.add(timeLabel);
+//		timeLabel = new JLabel();
+//		timeLabel.setForeground(Color.BLUE);
+//		timeLabel.setBounds(100, 10, 210, 50);
+//		this.add(timeLabel);
 		
 		
 		Virus v = new Virus(play, me);
-		this.virus = v;
 		boolean isWithinBounds = false;
 		while(!isWithinBounds){
 			int x = r.nextInt(Game.WIDTH-100)+1;
@@ -84,11 +82,11 @@ public class Level extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				//time countdown
-				time--;
-				Font fnt = new Font("Sylfaen", 1, 25);
-				timeLabel.setFont(fnt);
-				timeLabel.setText("Countdown: "+Integer.toString(time));
-				timeLabel.invalidate();
+//				play.time--;
+//				Font fnt = new Font("Sylfaen", 1, 25);
+//				timeLabel.setFont(fnt);
+//				timeLabel.setText("Countdown: "+Integer.toString(play.time));
+//				timeLabel.invalidate();
 				//all tick methods
 				for(TimeListener tickee : timeListeners){
 					tickee.tick();
@@ -103,12 +101,12 @@ public class Level extends JPanel{
 				}
 				
 				End wlScenario = new End(play);
-				if(time == 0 && cured != gameObjects.size()){
+				if(play.getPlayTime() == 0 && cured != gameObjects.size()){
 					wlScenario.WinLose(WINLOSE.Lose);
 					wlScenario.setVisible(true);
 					t.stop();
 					play.dispose();
-				}else if(time == 0 && cured == gameObjects.size()){
+				}else if(play.getPlayTime() == 0 && cured == gameObjects.size()){
 					wlScenario.WinLose(WINLOSE.Win);
 					wlScenario.setVisible(true);
 					t.stop();

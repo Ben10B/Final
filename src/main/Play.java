@@ -4,7 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -18,11 +21,14 @@ import javax.swing.WindowConstants;
 
 public class Play extends JFrame{
 	private int counter = 1;
+	private int time = 1200;
 	private JPanel panel;
 	private JLabel label;
 	private Level lvl1;
+	public Timer t;
 	
 	public Play(){
+		Play me = this;
 		this.setTitle("Play");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT));
@@ -38,6 +44,20 @@ public class Play extends JFrame{
 			c.add(lvl1);
 		}
 		this.pack();
+		t = new Timer(100, new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				time--;
+				Font fnt = new Font("Sylfaen", 1, 25);
+				me.setFont(fnt);
+				me.setTitle("Play - Countdown: "+Integer.toString(time));
+				me.invalidate();
+			}
+		});
+		t.start();
 	}
-
+	
+	public int getPlayTime(){
+		return time;
+	}
 }
