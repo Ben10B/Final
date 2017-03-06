@@ -21,6 +21,7 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 		Virus me = this;
 		this.play = p;
 		this.lvl = lvl;
+		virusSprite = new Sprite(still);
 		
 		if(r.nextInt(9)+1 < 6){
 			speedX = 30;
@@ -29,8 +30,6 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 			speedX = -30;
 			speedY = speedX;
 		}
-		
-		virusSprite = new Sprite(still);
 		
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent m) {

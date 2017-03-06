@@ -20,11 +20,11 @@ import javax.swing.WindowConstants;
 
 
 public class Play extends JFrame{
-	private int counter = 1;
+	private int counter = 0;
 	private int time = 1200;
 	private JPanel panel;
 	private JLabel label;
-	private Level lvl1;
+	private Level lvl;
 	public Timer t;
 	
 	public Play(){
@@ -38,10 +38,10 @@ public class Play extends JFrame{
 		this.setResizable(false);
 		Container c = this.getContentPane();
 		
-		if(counter == 1){
-			lvl1 = new Level(this);
-			lvl1.setBackground(Color.GRAY);
-			c.add(lvl1);
+		if(counter == 0){
+			lvl = new Level(this);
+			lvl.setBackground(Color.GRAY);
+			c.add(lvl);
 		}
 		this.pack();
 		t = new Timer(100, new ActionListener(){

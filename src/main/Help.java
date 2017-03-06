@@ -57,12 +57,12 @@ public class Help extends JFrame{
 		g.setColor(Color.cyan);
 		g.drawString("• Control the game with your mouse/keypad/stylus.", 25, 110);
 		g.drawString("• To win, purify the Virus.", 25, 150);
-		g.drawString("• First, the objects need to be in HEALTHY or CURED condition.", 25, 190);
+		g.drawString("• First, the objects need to be in HEALTHY or CURED condition;", 25, 190);
 		g.setColor(Color.black);
 		g.fillRect(360, 200, 35, 35);
 		g.setColor(Color.cyan);
 		g.fillRect(475, 200, 35, 35);
-		g.drawString("• Not in the POISONED condition.", 25, 250);
+		g.drawString("• not in the POISONED condition.", 25, 250);
 		g.setColor(Color.green);
 		g.fillRect(170, 260, 35, 35);
 		g.setColor(Color.cyan);
@@ -78,5 +78,10 @@ public class Help extends JFrame{
 		g.setFont(fnt2);
 		g.drawString("< This is the Virus :(", 400, 640);
 		g.drawString("< Purify It Please :)", 470, 680);
+		
+		Font fnt3 = new Font("Times New Roman", 1, 25);
+		g.setFont(fnt3);
+		g.setColor(Color.white);
+		g.drawString("Copyright ©2017 by 2Ways", 10, 830);
 	}
 }

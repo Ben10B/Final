@@ -79,10 +79,18 @@ public class Game extends JFrame{
 	@Override
 	public void paint(Graphics g){
 		super.paint(g);
-		Font fnt = new Font("Freestyle Script", 1, 50);
+		Font fnt = new Font("Freestyle Script", 1, 75);
+		Font fnt2 = new Font("Times New Roman", 1, 25);
 		g.setFont(fnt);
 		g.setColor(Color.black);
 		g.drawString("VIRUS PURIFICATION", 50, 150);
 		g.drawImage(bg.getImg(), 0, 0, null);
+		g.setFont(fnt2);
+		g.setColor(Color.white);
+//		g.drawString("By: Benjamin Beckwith", 10, 770);
+//		g.drawString("Sponsored By: HeTap", 10, 800);
+		g.drawString("Copyright ©2017 by 2Ways", 10, 830);
+		g.setColor(Color.black);
+		g.drawString("By: Benjamin Beckwith    Sponsored By: HeTap", 15, 280);
 	}
 }
