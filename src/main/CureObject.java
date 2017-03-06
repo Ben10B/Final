@@ -69,25 +69,25 @@ public class CureObject extends JFrame{
 		}else{
 			rB = new JButton("R");
 			rB.setActionCommand("r");
-			rB.addMouseListener(new ColorChange(rB));
+			rB.addMouseListener(new ColorChange(rB, null));
 			rB.addActionListener(new Concatenator());
 			panel.add(rB);
 			
 			uB = new JButton("U");
 			uB.setActionCommand("u");
-			uB.addMouseListener(new ColorChange(uB));
+			uB.addMouseListener(new ColorChange(uB, null));
 			uB.addActionListener(new Concatenator());
 			panel.add(uB);
 			
 			cB = new JButton("C");
 			cB.setActionCommand("C");
-			cB.addMouseListener(new ColorChange(cB));
+			cB.addMouseListener(new ColorChange(cB, null));
 			cB.addActionListener(new Concatenator());
 			panel.add(cB);
 			
 			eB = new JButton("E");
 			eB.setActionCommand("e");
-			eB.addMouseListener(new ColorChange(eB));
+			eB.addMouseListener(new ColorChange(eB, null));
 			eB.addActionListener(new Concatenator());
 			panel.add(eB);
 		}
@@ -104,13 +104,7 @@ public class CureObject extends JFrame{
 			}	
 		}
 	}
-	private final class ColorChange extends MouseAdapter {
-		private JButton b;
-		public ColorChange(JButton b){this.b = b;}
-		public void mousePressed(MouseEvent m){
-			b.setBackground(Color.cyan);
-		}
-	}
+	
 	
 	public void setVictim(CureListener p){
 		this.victim = p;

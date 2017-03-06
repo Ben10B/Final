@@ -42,6 +42,7 @@ public class Game extends JFrame{
 		panel2.setBackground(Color.darkGray);
 		
 		playButton = new JButton("Play");
+		playButton.addMouseListener(new ColorChange(null, playButton));
 		playButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -51,6 +52,7 @@ public class Game extends JFrame{
 			}
 		});
 		helpButton = new JButton("Help");
+		helpButton.addMouseListener(new ColorChange(null, helpButton));
 		helpButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -60,6 +62,7 @@ public class Game extends JFrame{
 			}
 		});
 		quitButton = new JButton("Quit");
+		quitButton.addMouseListener(new ColorChange(null, quitButton));
 		quitButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -76,7 +79,7 @@ public class Game extends JFrame{
 	@Override
 	public void paint(Graphics g){
 		super.paint(g);
-		Font fnt = new Font("Sylfaen", 1, 50);
+		Font fnt = new Font("Freestyle Script", 1, 50);
 		g.setFont(fnt);
 		g.setColor(Color.black);
 		g.drawString("VIRUS PURIFICATION", 50, 150);
