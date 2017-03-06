@@ -52,7 +52,7 @@ public class Level extends JPanel{
 		while(!isWithinBounds){
 			int x = r.nextInt(Game.WIDTH-100)+1;
 			int y = r.nextInt(Game.HEIGHT-100)+1;
-			if(x > 0 && y > 0 && x < Game.WIDTH-10 && y < Game.HEIGHT-10){
+			if(x > 35 && y > 35 && x < Game.WIDTH-10 && y < Game.HEIGHT-10){
 				v.setBounds(x, y, 35, 35);
 				timeListeners.add(v);
 				this.add(v);
