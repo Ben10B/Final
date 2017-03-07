@@ -7,25 +7,29 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
 public class ColorChange extends MouseAdapter {
-	private JButton b, g;
+	private JButton pressed, entered, exited;
 	
-	public ColorChange(JButton b, JButton g){
-		this.b = b;
-		this.g = g;
+	public ColorChange(JButton p, JButton e, JButton ex){
+		this.pressed = p;
+		this.entered = e;
+		this.exited = ex;
 	}
 	public void mousePressed(MouseEvent m){
-		if(b != null){
-			b.setBackground(Color.cyan);
+		if(pressed != null){
+			pressed.setBackground(Color.cyan);
 		}
 	}
 	public void mouseEntered(MouseEvent m){
-		if(g != null){			
-			g.setBackground(Color.green);
+		if(entered != null){			
+			entered.setBackground(Color.green);
+		}
+		if(exited != null && entered != null){
+			entered.setBackground(Color.green);
 		}
 	}
 	public void mouseExited(MouseEvent m){
-		if(b != null){
-			b.setBackground(Color.cyan);
+		if(exited != null && entered != null){
+			exited.setBackground(Color.cyan);
 		}
 	}
 }

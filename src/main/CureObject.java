@@ -71,22 +71,22 @@ public class CureObject extends JFrame{
 		}else if(action == 1){
 			rB = new JButton("R");
 			rB.setActionCommand("r");
-			rB.addMouseListener(new ColorChange(rB, null));
+			rB.addMouseListener(new ColorChange(rB, null, null));
 			rB.addActionListener(new Concatenator());
 			
 			uB = new JButton("U");
 			uB.setActionCommand("u");
-			uB.addMouseListener(new ColorChange(uB, null));
+			uB.addMouseListener(new ColorChange(uB, null, null));
 			uB.addActionListener(new Concatenator());
 			
 			cB = new JButton("C");
 			cB.setActionCommand("C");
-			cB.addMouseListener(new ColorChange(cB, null));
+			cB.addMouseListener(new ColorChange(cB, null, null));
 			cB.addActionListener(new Concatenator());
 			
 			eB = new JButton("E");
 			eB.setActionCommand("e");
-			eB.addMouseListener(new ColorChange(eB, null));
+			eB.addMouseListener(new ColorChange(eB, null, null));
 			eB.addActionListener(new Concatenator());
 			int order = r.nextInt(3);
 			if(order == 0){

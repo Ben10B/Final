@@ -43,7 +43,7 @@ public class Game extends JFrame{
 		panel2.setBackground(Color.darkGray);
 		
 		playButton = new JButton("Play");
-		playButton.addMouseListener(new ColorChange(null, playButton));
+		playButton.addMouseListener(new ColorChange(null, playButton, null));
 		playButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -53,7 +53,7 @@ public class Game extends JFrame{
 			}
 		});
 		helpButton = new JButton("Help");
-		helpButton.addMouseListener(new ColorChange(null, helpButton));
+		helpButton.addMouseListener(new ColorChange(null, helpButton, null));
 		helpButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -63,7 +63,7 @@ public class Game extends JFrame{
 			}
 		});
 		quitButton = new JButton("Quit");
-		quitButton.addMouseListener(new ColorChange(null, quitButton));
+		quitButton.addMouseListener(new ColorChange(null, quitButton, null));
 		quitButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
