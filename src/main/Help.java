@@ -56,7 +56,7 @@ public class Help extends JFrame{
 		Font fnt = new Font("Arial", 1, 20);
 		g.setFont(fnt);
 		g.setColor(Color.cyan);
-		g.drawString("• Control the game with your mouse/keypad/stylus.", 25, 110);
+		g.drawString("• Control the game with your mouse/keypad/stylus.  • Don't forget to check the time above in the TITLE!", 25, 110);
 		g.drawString("• To win, purify the Virus.", 25, 150);
 		g.drawString("• First, the objects need to be in HEALTHY or CURED condition;", 25, 190);
 		g.setColor(Color.black);

@@ -24,7 +24,7 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size = 14, cured/*, time = 1200*/;
+	private int size, cured/*, time = 1200*/;
 	private ArrayList<STATUSListener> gameObjects;
 	private Play play;
 	//private JLabel timeLabel;
@@ -62,7 +62,7 @@ public class Level extends JPanel{
 		
 		go = new ArrayList<>();
 		int i = 0;
-		while(i < size){
+		while(i < play.objectSize){
 			int x = r.nextInt(Game.WIDTH-60);
 			int y = r.nextInt(Game.HEIGHT-100);
 			go.add(new GameObject(v));
@@ -124,6 +124,7 @@ public class Level extends JPanel{
 	public boolean areAllObjectsCured() {
 		return (cured == gameObjects.size()) ? true : false;
 	}
+	
 	@Override
 	public void paint(Graphics g){
 		super.paint(g);

@@ -12,6 +12,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,10 +22,14 @@ import javax.swing.WindowConstants;
 
 
 public class Play extends JFrame{
-	private int counter = 0;
-	private int time = 1200;
+	private int counter = 0, time = 360;
+	public int objectSize = 0;
 	private Level lvl;
 	public Timer t;
+	private JButton easy, medium, hard;
+	private Difficulty choice = Difficulty.Select, chosen;
+	private String background = "/main/img/Select.png";
+	private Sprite bg;
 	
 	public Play(){
 		Play me = this;
@@ -34,12 +40,55 @@ public class Play extends JFrame{
 		this.setMinimumSize(new Dimension(Game.WIDTH, Game.HEIGHT));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
+		bg = new Sprite(background);
 		Container c = this.getContentPane();
-		
-		if(counter == 0){
-			lvl = new Level(this);
-			lvl.setBackground(Color.GRAY);
-			c.add(lvl);
+
+		JPanel panel = new JPanel();
+		if(choice == Difficulty.Select){
+			c.add(panel);
+			
+			easy = new JButton("Easy");
+			easy.setPreferredSize(new Dimension(150, 150));
+			easy.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					panel.setVisible(false);
+					objectSize = 12;
+					lvl = new Level(me);
+					lvl.setBackground(Color.GRAY);
+					c.add(lvl);
+					t.start();
+				}
+			});
+			panel.add(easy);
+			
+			medium = new JButton("Medium");
+			medium.setPreferredSize(new Dimension(150, 150));
+			medium.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					panel.setVisible(false);
+					objectSize = 24;
+					lvl = new Level(me);
+					lvl.setBackground(Color.GRAY);
+					c.add(lvl);
+				}
+			});
+			panel.add(medium);
+			
+			hard = new JButton("Hard");
+			hard.setPreferredSize(new Dimension(150, 150));
+			hard.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					panel.setVisible(false);
+					objectSize = 36;
+					lvl = new Level(me);
+					lvl.setBackground(Color.GRAY);
+					c.add(lvl);
+				}
+			});
+			panel.add(hard);
 		}
 		this.pack();
 		t = new Timer(100, new ActionListener(){
@@ -52,10 +101,17 @@ public class Play extends JFrame{
 				me.invalidate();
 			}
 		});
-		t.start();
 	}
-	
+	@Override
+	public void paint(Graphics g){
+		super.paint(g);
+		//g.drawImage(bg.getImg(), 0, 0, null);
+		if(choice == Difficulty.Select){
+			
+		}
+	}
 	public int getPlayTime(){
 		return time;
 	}
+	
 }
