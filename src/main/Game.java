@@ -52,7 +52,7 @@ public class Game extends JFrame{
 				me.dispose();
 			}
 		});
-		helpButton = new JButton("Help");
+		helpButton = new JButton("Instructions");
 		helpButton.addMouseListener(new ColorChange(null, helpButton, null));
 		helpButton.addActionListener(new ActionListener(){
 			@Override
