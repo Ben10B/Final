@@ -49,7 +49,6 @@ public class Play extends JFrame {
 
 		JPanel panel1 = new JPanel();
 		panel1.setBackground(Color.cyan);
-		panel1.setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT-600));
 		backButton = new JButton("< Go back to Menu");
 		backButton.addMouseListener(new ColorChange(null, backButton, null));
 		backButton.addActionListener(new ActionListener(){
@@ -59,12 +58,12 @@ public class Play extends JFrame {
 				me.setVisible(false);
 			}
 		});
+		
 		panel1.add(backButton);
 		c.add(panel1, BorderLayout.NORTH);
 		
 		selectPanel = new JPanel();
-		//selectPanel.setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT));
-		//selectPanel.setBackground(Color.darkGray/*decode("#B6AFA9")*/);
+		selectPanel.setBackground(Color.darkGray);
 		
 		easy = new JButton("Easy");
 		easy.setPreferredSize(new Dimension(150, 150));
@@ -74,7 +73,7 @@ public class Play extends JFrame {
 				selectPanel.setVisible(false);
 				panel1.setVisible(false);
 				objectSize = 12;
-				time = 12;
+				time = 1200;
 				lvl = new Level(me);
 				lvl.setBackground(Color.GRAY);
 				c.add(lvl);

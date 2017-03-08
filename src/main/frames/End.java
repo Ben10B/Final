@@ -38,6 +38,7 @@ public class End extends JFrame implements WinLoseListener{
 		Container c = this.getContentPane();
 		
 		JPanel endPanel = new JPanel();
+		endPanel.setBackground(Color.darkGray);
 		
 		restartButton = new JButton("Play Again");
 		restartButton.addMouseListener(new ColorChange(null, restartButton, restartButton));
@@ -50,6 +51,7 @@ public class End extends JFrame implements WinLoseListener{
 				dispose();
 			}
 		});
+		
 		menuButton = new JButton("Return to Menu");
 		menuButton.addMouseListener(new ColorChange(null, menuButton, menuButton));
 		menuButton.addActionListener(new ActionListener(){
@@ -60,6 +62,7 @@ public class End extends JFrame implements WinLoseListener{
 				dispose();
 			}
 		});
+		
 		quitButton = new JButton("Quit");
 		quitButton.addMouseListener(new ColorChange(null, quitButton, quitButton));
 		quitButton.addActionListener(new ActionListener(){
@@ -95,17 +98,18 @@ public class End extends JFrame implements WinLoseListener{
 	public void paint(Graphics g){
 		super.paint(g);
 		if(scenario == WINLOSE.Win){
+			g.setColor(Color.decode("#666666"));
+			g.fillRect(80, 83, 880, 210);
 			g.drawImage(bg.getImg(), 0, 0, null);
 			g.setColor(Color.cyan);
 		}else{
+			g.setColor(Color.decode("#666666"));
+			g.fillRect(80, 83, 880, 210);
 			g.drawImage(bgL.getImg(), 0, 0, null);
 			g.setColor(Color.green);
 		}
 		Font fnt = new Font("Arial", 1, 50);
 		g.setFont(fnt);
-		g.drawString("^", 415, 130);
-		g.drawString("^", 525, 130);
-		g.drawString("^", 615, 130);
-		g.drawString("Game Over: You "+scenario+"!", 260, 180);
+		g.drawString("Game Over: You "+scenario+"!", 260, 200);
 	}
 }

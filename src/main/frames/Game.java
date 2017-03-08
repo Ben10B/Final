@@ -54,6 +54,7 @@ public class Game extends JFrame{
 				me.dispose();
 			}
 		});
+		
 		helpButton = new JButton("Instructions");
 		helpButton.addMouseListener(new ColorChange(null, helpButton, null));
 		helpButton.addActionListener(new ActionListener(){
@@ -64,6 +65,7 @@ public class Game extends JFrame{
 				me.setVisible(false);
 			}
 		});
+		
 		quitButton = new JButton("Quit");
 		quitButton.addMouseListener(new ColorChange(null, quitButton, null));
 		quitButton.addActionListener(new ActionListener(){
@@ -72,6 +74,7 @@ public class Game extends JFrame{
 				System.exit(0);
 			}
 		});
+		
 		panel2.add(playButton);
 		panel2.add(helpButton);
 		panel2.add(quitButton);
