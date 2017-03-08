@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-import main.frames.ButtonWithImage;
 import main.frames.End;
 import main.frames.Game;
 import main.frames.Play;

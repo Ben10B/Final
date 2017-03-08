@@ -15,6 +15,7 @@ import javax.swing.WindowConstants;
 
 import main.ColorChange;
 import main.Sprite;
+import sfx.AudioPlayer;
 
 public class Game extends JFrame{
 	public static final int WIDTH = 1040, HEIGHT = WIDTH-200;
@@ -80,6 +81,9 @@ public class Game extends JFrame{
 		panel2.add(quitButton);
 		c.add(panel2, BorderLayout.CENTER);
 		bg = new Sprite(background);
+		
+		AudioPlayer.load();
+		AudioPlayer.getMusic("music").loop();
 	}
 	
 	@Override

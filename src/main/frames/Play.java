@@ -73,7 +73,7 @@ public class Play extends JFrame {
 				selectPanel.setVisible(false);
 				panel1.setVisible(false);
 				objectSize = 12;
-				time = 1200;
+				time = 50;
 				lvl = new Level(me);
 				lvl.setBackground(Color.GRAY);
 				c.add(lvl);
