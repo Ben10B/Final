@@ -15,11 +15,13 @@ import javax.swing.JPanel;
 
 import main.ColorChange;
 import main.Sprite;
+import sfx.BackgroundMusic;
 
 public class Help extends JFrame{
 	private JButton backButton;
 	private String still = "/main/img/virus1.png";
 	private Sprite virusSprite;
+	private BackgroundMusic bm;
 
 	public Help(Game game){
 		Help me = this;
@@ -31,6 +33,7 @@ public class Help extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		Container c = this.getContentPane();
+		bm = new BackgroundMusic();
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.cyan);
@@ -44,6 +47,7 @@ public class Help extends JFrame{
 				me.setVisible(false);
 			}
 		});
+		
 		panel.add(backButton);
 		c.add(panel, BorderLayout.NORTH);
 		
@@ -52,6 +56,7 @@ public class Help extends JFrame{
 		c.add(panel2);
 
 		virusSprite = new Sprite(still);
+		
 	}
 	@Override
 	public void paint(Graphics g){

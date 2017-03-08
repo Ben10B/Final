@@ -8,20 +8,21 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 
 import main.ColorChange;
 import main.Sprite;
-import sfx.AudioPlayer;
+import sfx.BackgroundMusic;
 
 public class Game extends JFrame{
 	public static final int WIDTH = 1040, HEIGHT = WIDTH-200;
 	private JButton playButton, helpButton, quitButton;
 	private String background = "/main/img/Start.png";
 	private Sprite bg;
+	private BackgroundMusic bm;
 	
 	public Game(){
 		Game me = this;
@@ -33,6 +34,7 @@ public class Game extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		Container c = this.getContentPane();
+		bm = new BackgroundMusic();
 		//Top panel
 		JPanel panel1 = new JPanel();
 		panel1.setBackground(Color.cyan);
@@ -72,7 +74,8 @@ public class Game extends JFrame{
 		quitButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				System.exit(0);
+				bm.stopMusic();
+				System.exit(1);
 			}
 		});
 		
@@ -82,8 +85,7 @@ public class Game extends JFrame{
 		c.add(panel2, BorderLayout.CENTER);
 		bg = new Sprite(background);
 		
-		AudioPlayer.load();
-		AudioPlayer.getMusic("music").loop();
+		
 	}
 	
 	@Override

@@ -19,12 +19,14 @@ import main.ColorChange;
 import main.Sprite;
 import main.WinLoseListener;
 import main.WinLoseListener.WINLOSE;
+import sfx.BackgroundMusic;
 
 public class End extends JFrame implements WinLoseListener{
 	//private JPanel endPanel;
 	private String background = "/main/img/End.png", backgroundL = "/main/img/EndL.png";
 	private Sprite bg, bgL;
 	private JButton restartButton, menuButton, quitButton;
+	private BackgroundMusic bm;
 
 	public End(Play play){
 		this.setTitle("The End");
@@ -36,6 +38,7 @@ public class End extends JFrame implements WinLoseListener{
 		this.setResizable(false);
 		
 		Container c = this.getContentPane();
+		bm = new BackgroundMusic();
 		
 		JPanel endPanel = new JPanel();
 		endPanel.setBackground(Color.darkGray);
@@ -68,7 +71,8 @@ public class End extends JFrame implements WinLoseListener{
 		quitButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				System.exit(0);
+				bm.stopMusic();
+				System.exit(1);
 			}
 		});
 		

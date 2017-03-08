@@ -26,6 +26,7 @@ import javax.swing.WindowConstants;
 import main.ColorChange;
 import main.Level;
 import main.Sprite;
+import sfx.BackgroundMusic;
 
 public class Play extends JFrame {
 	private int counter = 0, time, objectSize;
@@ -35,6 +36,7 @@ public class Play extends JFrame {
 	private String background = "/main/img/Select.png";
 	private Sprite bg;
 	private JPanel selectPanel;
+	private BackgroundMusic bm;
 
 	public Play(Game game) {
 		Play me = this;
@@ -46,6 +48,7 @@ public class Play extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		Container c = this.getContentPane();
+		bm = new BackgroundMusic();
 
 		JPanel panel1 = new JPanel();
 		panel1.setBackground(Color.cyan);
@@ -73,7 +76,7 @@ public class Play extends JFrame {
 				selectPanel.setVisible(false);
 				panel1.setVisible(false);
 				objectSize = 12;
-				time = 50;
+				time = 1200;
 				lvl = new Level(me);
 				lvl.setBackground(Color.GRAY);
 				c.add(lvl);
@@ -125,7 +128,7 @@ public class Play extends JFrame {
 				Font fnt = new Font("Sylfaen", 1, 25);
 				me.setFont(fnt);
 				me.setTitle("Play                                                       Time: " + Integer.toString(time));
-				//me.invalidate();
+				me.invalidate();
 			}
 		});
 		
