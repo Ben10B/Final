@@ -1,7 +1,6 @@
-package main;
+package main.frames;
 
 import java.awt.BorderLayout;
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -9,12 +8,13 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferStrategy;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+
+import main.ColorChange;
+import main.Sprite;
 
 public class Game extends JFrame{
 	public static final int WIDTH = 1040, HEIGHT = WIDTH-200;
@@ -25,29 +25,31 @@ public class Game extends JFrame{
 	public Game(){
 		Game me = this;
 		this.setTitle("Menu");
-		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		Container c = this.getContentPane();
+		//Top panel
 		JPanel panel1 = new JPanel();
 		panel1.setBackground(Color.cyan);
 		panel1.setPreferredSize(new Dimension(WIDTH, HEIGHT-600));
 		c.add(panel1, BorderLayout.NORTH);
 		
-		
+		//Bottom panel
 		JPanel panel2 = new JPanel();
 		panel2.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		panel2.setBackground(Color.darkGray);
 		
+		//Bottom panel buttons
 		playButton = new JButton("Play");
 		playButton.addMouseListener(new ColorChange(null, playButton, null));
 		playButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				Play lvl = new Play();
+				Play lvl = new Play(me);
 				lvl.setVisible(true);
 				me.dispose();
 			}

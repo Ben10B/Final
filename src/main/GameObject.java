@@ -8,6 +8,8 @@ import java.util.Random;
 
 import javax.swing.JButton;
 
+import main.frames.CureObject;
+
 public class GameObject extends JButton implements TimeListener, CureListener, STATUSListener{
 	
 	private STATUS state;

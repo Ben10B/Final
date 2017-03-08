@@ -1,15 +1,18 @@
-package main;
+package main.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -20,18 +23,20 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.WindowConstants;
 
+import main.ColorChange;
+import main.Level;
+import main.Sprite;
+
 public class Play extends JFrame {
-	private int counter = 0, time;
-	public int objectSize = 0;
+	private int counter = 0, time, objectSize;
 	private Level lvl;
-	public Timer t;
-	private JButton easy, medium, hard;
-	private Difficulty choice = Difficulty.Select;
+	private Timer t;
+	private JButton easy, medium, hard, backButton;
 	private String background = "/main/img/Select.png";
 	private Sprite bg;
-	private JPanel panel;
+	private JPanel selectPanel;
 
-	public Play() {
+	public Play(Game game) {
 		Play me = this;
 		this.setTitle("Play");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -40,35 +45,50 @@ public class Play extends JFrame {
 		this.setMinimumSize(new Dimension(Game.WIDTH, Game.HEIGHT));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		bg = new Sprite(background);
 		Container c = this.getContentPane();
 
-		panel = new JPanel();
-		panel.setBackground(Color.darkGray/*decode("#B6AFA9")*/);
-		c.add(panel);
-
+		JPanel panel1 = new JPanel();
+		panel1.setBackground(Color.cyan);
+		panel1.setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT-600));
+		backButton = new JButton("< Go back to Menu");
+		backButton.addMouseListener(new ColorChange(null, backButton, null));
+		backButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				game.setVisible(true);
+				me.setVisible(false);
+			}
+		});
+		panel1.add(backButton);
+		c.add(panel1, BorderLayout.NORTH);
+		
+		selectPanel = new JPanel();
+		//selectPanel.setPreferredSize(new Dimension(Game.WIDTH, Game.HEIGHT));
+		//selectPanel.setBackground(Color.darkGray/*decode("#B6AFA9")*/);
+		
 		easy = new JButton("Easy");
 		easy.setPreferredSize(new Dimension(150, 150));
 		easy.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel.setVisible(false);
+				selectPanel.setVisible(false);
+				panel1.setVisible(false);
 				objectSize = 12;
-				time = 1200;
+				time = 12;
 				lvl = new Level(me);
 				lvl.setBackground(Color.GRAY);
 				c.add(lvl);
 				t.start();
 			}
 		});
-		panel.add(easy);
-
+		
 		medium = new JButton("Medium");
 		medium.setPreferredSize(new Dimension(150, 150));
 		medium.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel.setVisible(false);
+				selectPanel.setVisible(false);
+				panel1.setVisible(false);
 				objectSize = 24;
 				time = 1550;
 				lvl = new Level(me);
@@ -77,14 +97,14 @@ public class Play extends JFrame {
 				t.start();
 			}
 		});
-		panel.add(medium);
-
+		
 		hard = new JButton("Hard");
 		hard.setPreferredSize(new Dimension(150, 150));
 		hard.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel.setVisible(false);
+				selectPanel.setVisible(false);
+				panel1.setVisible(false);
 				objectSize = 36;
 				time = 1800;
 				lvl = new Level(me);
@@ -93,26 +113,31 @@ public class Play extends JFrame {
 				t.start();
 			}
 		});
-		panel.add(hard);
-
-		this.pack();
+		
+		selectPanel.add(easy);
+		selectPanel.add(medium);
+		selectPanel.add(hard);
+		c.add(selectPanel, BorderLayout.CENTER);
+		
 		t = new Timer(100, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				time--;
 				Font fnt = new Font("Sylfaen", 1, 25);
 				me.setFont(fnt);
-				me.setTitle("Play - Countdown: " + Integer.toString(time));
-				me.invalidate();
+				me.setTitle("Play                                                       Time: " + Integer.toString(time));
+				//me.invalidate();
 			}
 		});
+		
+		bg = new Sprite(background); 
 	}
 
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		// g.drawImage(bg.getImg(), 0, 0, null);
-		if (panel.isVisible()) {
+		if (selectPanel.isVisible()) {
+			g.drawImage(bg.getImg(), 0, 0, null);
 			Font fnt = new Font("Freestyle Script", 1, 75);
 			g.setFont(fnt);
 			g.setColor(Color.cyan);
@@ -123,5 +148,7 @@ public class Play extends JFrame {
 	public int getPlayTime() {
 		return time;
 	}
-
+	public int getObjectSize() {
+		return objectSize;
+	}
 }

@@ -1,9 +1,10 @@
-package main;
+package main.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -14,8 +15,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import main.ColorChange;
+import main.Sprite;
+import main.WinLoseListener;
+import main.WinLoseListener.WINLOSE;
+
 public class End extends JFrame implements WinLoseListener{
-	private JPanel endPanel;
+	//private JPanel endPanel;
 	private String background = "/main/img/End.png", backgroundL = "/main/img/EndL.png";
 	private Sprite bg, bgL;
 	private JButton restartButton, menuButton, quitButton;
@@ -28,24 +34,22 @@ public class End extends JFrame implements WinLoseListener{
 		this.setMinimumSize(new Dimension(Game.WIDTH, Game.HEIGHT));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		bg = new Sprite(background);
-		bgL = new Sprite(backgroundL);
+		
 		Container c = this.getContentPane();
 		
-		endPanel = new JPanel();
-		c.add(endPanel);
+		JPanel endPanel = new JPanel();
 		
 		restartButton = new JButton("Play Again");
 		restartButton.addMouseListener(new ColorChange(null, restartButton, restartButton));
 		restartButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				Play play = new Play();
+				Game newGame = new Game();
+				Play play = new Play(newGame);
 				play.setVisible(true);
 				dispose();
 			}
 		});
-		
 		menuButton = new JButton("Return to Menu");
 		menuButton.addMouseListener(new ColorChange(null, menuButton, menuButton));
 		menuButton.addActionListener(new ActionListener(){
@@ -56,7 +60,6 @@ public class End extends JFrame implements WinLoseListener{
 				dispose();
 			}
 		});
-		
 		quitButton = new JButton("Quit");
 		quitButton.addMouseListener(new ColorChange(null, quitButton, quitButton));
 		quitButton.addActionListener(new ActionListener(){
@@ -69,14 +72,15 @@ public class End extends JFrame implements WinLoseListener{
 		endPanel.add(restartButton);
 		endPanel.add(menuButton);
 		endPanel.add(quitButton);
+		c.add(endPanel);
 		
-		this.pack();
+		bg = new Sprite(background);
+		bgL = new Sprite(backgroundL);
 	}
 
 	private WINLOSE scenario;
 	@Override
 	public void WinLose(WINLOSE wl) {
-		
 		if(wl == WINLOSE.Win){
 			this.scenario = wl;
 		}else{
@@ -91,10 +95,10 @@ public class End extends JFrame implements WinLoseListener{
 	public void paint(Graphics g){
 		super.paint(g);
 		if(scenario == WINLOSE.Win){
-			g.drawImage(bg.getImg(), 0, 0, this.getWidth(), this.getHeight(), null);
+			g.drawImage(bg.getImg(), 0, 0, null);
 			g.setColor(Color.cyan);
 		}else{
-			g.drawImage(bgL.getImg(), 0, 0, this.getWidth(), this.getHeight(), null);
+			g.drawImage(bgL.getImg(), 0, 0, null);
 			g.setColor(Color.green);
 		}
 		Font fnt = new Font("Arial", 1, 50);

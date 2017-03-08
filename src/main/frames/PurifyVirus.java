@@ -1,4 +1,4 @@
-package main;
+package main.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 
+import main.Level;
+import main.PurifyListener;
 import main.WinLoseListener.WINLOSE;
 
 public class PurifyVirus extends JFrame{
@@ -77,7 +79,7 @@ public class PurifyVirus extends JFrame{
 					End win = new End(null);
 					win.WinLose(WINLOSE.Win);
 					win.setVisible(true);
-					lvl.t.stop();
+					lvl.getTimer().stop();
 					dispose();
 					play.dispose();
 				}else if(virus.purify() != 0){

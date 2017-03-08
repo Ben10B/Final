@@ -1,4 +1,4 @@
-package main;
+package main.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,6 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import main.ColorChange;
+import main.CureListener;
 
 public class CureObject extends JFrame{
 	

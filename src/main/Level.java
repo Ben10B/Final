@@ -18,9 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import main.WinLoseListener.WINLOSE;
+import main.frames.End;
+import main.frames.Game;
+import main.frames.Play;
 
 public class Level extends JPanel{
-	public Timer t;
+	private Timer t;
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
@@ -62,7 +65,7 @@ public class Level extends JPanel{
 		
 		go = new ArrayList<>();
 		int i = 0;
-		while(i < play.objectSize){
+		while(i < play.getObjectSize()){
 			int x = r.nextInt(Game.WIDTH-60);
 			int y = r.nextInt(Game.HEIGHT-100);
 			go.add(new GameObject(v));
@@ -129,5 +132,8 @@ public class Level extends JPanel{
 	public void paint(Graphics g){
 		super.paint(g);
 		g.drawImage(bg.getImg(), 0, 0, null);
+	}
+	public Timer getTimer() {
+		return t;
 	}
 }

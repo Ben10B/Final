@@ -9,6 +9,10 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import main.frames.Game;
+import main.frames.Play;
+import main.frames.PurifyVirus;
+
 public class Virus extends JButton implements TimeListener, PurifyListener{
 	private String still = "/main/img/virus1.png";
 	private Sprite virusSprite;
