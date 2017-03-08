@@ -23,6 +23,7 @@ public class Game extends JFrame{
 	private String background = "/main/img/Start.png";
 	private Sprite bg;
 	private BackgroundMusic bm;
+	private Font fnt = new Font("Freestyle Script", 1, 45);
 	
 	public Game(){
 		Game me = this;
@@ -48,7 +49,9 @@ public class Game extends JFrame{
 		
 		//Bottom panel buttons
 		playButton = new JButton("Play");
+		playButton.setFont(fnt);
 		playButton.addMouseListener(new ColorChange(null, playButton, null));
+		playButton.setPreferredSize(new Dimension(150, 50));
 		playButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -58,8 +61,10 @@ public class Game extends JFrame{
 			}
 		});
 		
-		helpButton = new JButton("Instructions");
+		helpButton = new JButton("Help");
+		helpButton.setFont(fnt);
 		helpButton.addMouseListener(new ColorChange(null, helpButton, null));
+		helpButton.setPreferredSize(new Dimension(150, 50));
 		helpButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -70,12 +75,14 @@ public class Game extends JFrame{
 		});
 		
 		quitButton = new JButton("Quit");
+		quitButton.setFont(fnt);
 		quitButton.addMouseListener(new ColorChange(null, quitButton, null));
+		quitButton.setPreferredSize(new Dimension(150, 50));
 		quitButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				bm.stopMusic();
-				System.exit(1);
+				System.exit(0);
 			}
 		});
 		

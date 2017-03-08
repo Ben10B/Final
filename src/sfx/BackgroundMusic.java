@@ -9,7 +9,7 @@ public class BackgroundMusic implements MusicListener{
 	@Override
 	public void playMusic() {
 		AudioPlayer.load();
-		AudioPlayer.getMusic("music").play();
+		AudioPlayer.getMusic("music").loop();
 	}
 
 	@Override

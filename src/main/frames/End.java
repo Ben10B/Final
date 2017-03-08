@@ -27,7 +27,8 @@ public class End extends JFrame implements WinLoseListener{
 	private Sprite bg, bgL;
 	private JButton restartButton, menuButton, quitButton;
 	private BackgroundMusic bm;
-
+	private Font fnt = new Font("Freestyle Script", 1, 32);
+	
 	public End(Play play){
 		this.setTitle("The End");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -44,7 +45,9 @@ public class End extends JFrame implements WinLoseListener{
 		endPanel.setBackground(Color.darkGray);
 		
 		restartButton = new JButton("Play Again");
+		restartButton.setFont(fnt);
 		restartButton.addMouseListener(new ColorChange(null, restartButton, restartButton));
+		restartButton.setPreferredSize(new Dimension(150, 70));
 		restartButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -55,8 +58,10 @@ public class End extends JFrame implements WinLoseListener{
 			}
 		});
 		
-		menuButton = new JButton("Return to Menu");
+		menuButton = new JButton("Menu");
+		menuButton.setFont(fnt);
 		menuButton.addMouseListener(new ColorChange(null, menuButton, menuButton));
+		menuButton.setPreferredSize(new Dimension(150, 70));
 		menuButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -67,12 +72,14 @@ public class End extends JFrame implements WinLoseListener{
 		});
 		
 		quitButton = new JButton("Quit");
+		quitButton.setFont(fnt);
 		quitButton.addMouseListener(new ColorChange(null, quitButton, quitButton));
+		quitButton.setPreferredSize(new Dimension(150, 70));
 		quitButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				bm.stopMusic();
-				System.exit(1);
+				System.exit(0);
 			}
 		});
 		
@@ -103,17 +110,17 @@ public class End extends JFrame implements WinLoseListener{
 		super.paint(g);
 		if(scenario == WINLOSE.Win){
 			g.setColor(Color.decode("#666666"));
-			g.fillRect(80, 83, 880, 210);
+			g.fillRect(80, 133, 880, 175);
 			g.drawImage(bg.getImg(), 0, 0, null);
 			g.setColor(Color.cyan);
 		}else{
 			g.setColor(Color.decode("#666666"));
-			g.fillRect(80, 83, 880, 210);
+			g.fillRect(80, 133, 880, 175);
 			g.drawImage(bgL.getImg(), 0, 0, null);
 			g.setColor(Color.green);
 		}
 		Font fnt = new Font("Arial", 1, 50);
 		g.setFont(fnt);
-		g.drawString("Game Over: You "+scenario+"!", 260, 200);
+		g.drawString("Game Over: You "+scenario+"!", 260, 230);
 	}
 }

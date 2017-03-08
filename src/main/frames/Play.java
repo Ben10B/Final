@@ -37,6 +37,7 @@ public class Play extends JFrame {
 	private Sprite bg;
 	private JPanel selectPanel;
 	private BackgroundMusic bm;
+	private Font fnt = new Font("Freestyle Script", 1, 50);
 
 	public Play(Game game) {
 		Play me = this;
@@ -51,7 +52,8 @@ public class Play extends JFrame {
 		bm = new BackgroundMusic();
 
 		JPanel panel1 = new JPanel();
-		panel1.setBackground(Color.cyan);
+		panel1.setBackground(Color.darkGray);
+		panel1.setPreferredSize(new Dimension(Game.WIDTH, 200));
 		backButton = new JButton("< Go back to Menu");
 		backButton.addMouseListener(new ColorChange(null, backButton, null));
 		backButton.addActionListener(new ActionListener(){
@@ -69,6 +71,7 @@ public class Play extends JFrame {
 		selectPanel.setBackground(Color.darkGray);
 		
 		easy = new JButton("Easy");
+		easy.setFont(fnt);
 		easy.setPreferredSize(new Dimension(150, 150));
 		easy.addActionListener(new ActionListener() {
 			@Override
@@ -85,6 +88,7 @@ public class Play extends JFrame {
 		});
 		
 		medium = new JButton("Medium");
+		medium.setFont(fnt);
 		medium.setPreferredSize(new Dimension(150, 150));
 		medium.addActionListener(new ActionListener() {
 			@Override
@@ -92,7 +96,7 @@ public class Play extends JFrame {
 				selectPanel.setVisible(false);
 				panel1.setVisible(false);
 				objectSize = 24;
-				time = 1550;
+				time = 1800;
 				lvl = new Level(me);
 				lvl.setBackground(Color.GRAY);
 				c.add(lvl);
@@ -101,6 +105,7 @@ public class Play extends JFrame {
 		});
 		
 		hard = new JButton("Hard");
+		hard.setFont(fnt);
 		hard.setPreferredSize(new Dimension(150, 150));
 		hard.addActionListener(new ActionListener() {
 			@Override
@@ -108,7 +113,7 @@ public class Play extends JFrame {
 				selectPanel.setVisible(false);
 				panel1.setVisible(false);
 				objectSize = 36;
-				time = 1800;
+				time = 2400;
 				lvl = new Level(me);
 				lvl.setBackground(Color.GRAY);
 				c.add(lvl);

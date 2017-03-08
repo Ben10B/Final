@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import main.WinLoseListener.WINLOSE;
 import main.frames.End;
 import main.frames.Game;
 import main.frames.Play;
@@ -17,7 +18,8 @@ import sfx.BackgroundMusic;
 public class Window{
 
 	public static void main(String[] args){
-		Game g = new Game();
+		End g = new End(null);
+//		Game g = new Game();
 		g.setVisible(true);
 		BackgroundMusic bm = new BackgroundMusic();
 		bm.playMusic();
