@@ -1,16 +1,13 @@
 package main.frames;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,7 +15,6 @@ import javax.swing.JPanel;
 import main.ColorChange;
 import main.Sprite;
 import main.WinLoseListener;
-import main.WinLoseListener.WINLOSE;
 import sfx.BackgroundMusic;
 
 public class End extends JFrame implements WinLoseListener{

@@ -1,19 +1,11 @@
 package main;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -27,11 +19,12 @@ public class Level extends JPanel{
 	private ArrayList<TimeListener> timeListeners;
 	private ArrayList<GameObject> go;
 	private Random r;
-	private int size, cured/*, time = 1200*/;
+	private int cured;
 	private ArrayList<STATUSListener> gameObjects;
 	private Play play;
 	private String background = "/main/img/playbg.png";
 	private Sprite bg = new Sprite(background);
+	private boolean isWithinBounds;
 	
  	public Level(Play p){
 		Level me = this;
@@ -42,7 +35,7 @@ public class Level extends JPanel{
 		r = new Random();
 		
 		Virus v = new Virus(play, me);
-		boolean isWithinBounds = false;
+		isWithinBounds = false;
 		while(!isWithinBounds){
 			int x = r.nextInt(Game.WIDTH-100)+1;
 			int y = r.nextInt(Game.HEIGHT-100)+1;
@@ -108,6 +101,9 @@ public class Level extends JPanel{
 			}
 		});
 		t.start();
+	}
+	public boolean isWithinBounds() {
+		return isWithinBounds;
 	}
 	public boolean areAllObjectsCured() {
 		return (cured == gameObjects.size()) ? true : false;

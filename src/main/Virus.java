@@ -1,12 +1,10 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import main.frames.Game;
@@ -16,15 +14,13 @@ import main.frames.PurifyVirus;
 public class Virus extends JButton implements TimeListener, PurifyListener{
 	private String still = "/main/img/virus1.png";
 	private Sprite virusSprite;
-	private int x, y, speedX, speedY, freeze = 120, count = 0;
+	private int speedX, speedY, freeze = 120;
 	private Play play;
-	private Level lvl;
 	private Random r = new Random();
 	
 	public Virus(Play p, Level lvl){
 		Virus me = this;
 		this.play = p;
-		this.lvl = lvl;
 		virusSprite = new Sprite(still);
 		
 		if(r.nextInt(9)+1 < 6){
@@ -66,7 +62,7 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 		if(speedX == 0){
 			freeze--;
 			if(freeze == 0){
-				speedX = 20;
+				speedX = 25;
 				speedY = speedX;
 				freeze = 120;
 			}

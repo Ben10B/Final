@@ -57,18 +57,18 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 	public void paint(Graphics g){
 		if(state == STATUS.Healthy){
 			g.setColor(Color.black);
-			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
-//			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+//			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		}else if(state == STATUS.Effected){
 			g.setColor(Color.decode("#00ff00"));
-			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
-			//g.fillRect(0, 0, this.getWidth(), this.getHeight());
+//			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			g.setColor(Color.black);
 			g.drawString("Poisoned", 0, 30);
 		}else{
 			g.setColor(Color.cyan);
-			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
-			//g.fillRect(0, 0, this.getWidth(), this.getHeight());
+//			g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 40, 40);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			g.setColor(Color.black);
 			g.drawString("Purified!", 0, 30);
 			g.drawString(invincibility+"", 15, 15);
