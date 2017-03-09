@@ -14,7 +14,7 @@ import main.frames.PurifyVirus;
 public class Virus extends JButton implements TimeListener, PurifyListener{
 	private String still = "/main/img/virus1.png";
 	private Sprite virusSprite;
-	private int speedX, speedY, freeze = 120;
+	private int speedX, speedY, freeze = 120, stuckInBounds;
 	private Play play;
 	private Random r = new Random();
 	
@@ -57,7 +57,7 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 	@Override
 	public void tick() {
 		if(this.getX() <= 21 || this.getX() >= Game.WIDTH-65) speedX *= -1;
-		if(this.getY() <= 21 || this.getY() >= Game.HEIGHT-99) speedY *= -1;
+		if(this.getY() <= 21 || this.getY() >= Game.HEIGHT-90) speedY *= -1;
 		
 		if(speedX == 0){
 			freeze--;
@@ -65,6 +65,29 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 				speedX = 25;
 				speedY = speedX;
 				freeze = 120;
+			}
+		}
+		
+		if(speedX != 0 && this.getX() <= 21){
+			stuckInBounds++;
+			if(stuckInBounds == 4){
+				this.setLocation(Game.WIDTH/2, Game.HEIGHT/2);
+			}
+		}else if(speedY != 0 && this.getY() <= 21){
+			stuckInBounds++;
+			if(stuckInBounds == 4){
+				this.setLocation(Game.WIDTH/2, Game.HEIGHT/2);
+			}
+		}
+		if(speedX != 0 && this.getY() >= Game.WIDTH-100){
+			stuckInBounds++;
+			if(stuckInBounds == 4){
+				this.setLocation(Game.WIDTH/2, Game.HEIGHT/2);
+			}
+		}else if(speedY != 0 && this.getY() >= Game.HEIGHT-100){
+			stuckInBounds++;
+			if(stuckInBounds == 4){
+				this.setLocation(Game.WIDTH/2, Game.HEIGHT/2);
 			}
 		}
 		this.setLocation(this.getX() + speedX, this.getY() + speedY);
