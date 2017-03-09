@@ -50,7 +50,7 @@ public class Play extends JFrame {
 		this.setResizable(false);
 		Container c = this.getContentPane();
 		bm = new BackgroundMusic();
-
+		//Panel for back button
 		JPanel panel1 = new JPanel();
 		panel1.setBackground(Color.darkGray);
 		panel1.setPreferredSize(new Dimension(Game.WIDTH, 200));
@@ -66,7 +66,7 @@ public class Play extends JFrame {
 		
 		panel1.add(backButton);
 		c.add(panel1, BorderLayout.NORTH);
-		
+		//Panel for difficulty selection
 		selectPanel = new JPanel();
 		selectPanel.setBackground(Color.darkGray);
 		

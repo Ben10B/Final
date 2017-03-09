@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class PurifyVirus extends JFrame{
 	private int count = 0;
 	private Play play;
 	private Level level;
+	private Font fnt = new Font("Freestyle Script", 1, 35);
 	
 	public PurifyVirus(Play p, Level lvl){
 		PurifyVirus me = this;
@@ -53,6 +55,7 @@ public class PurifyVirus extends JFrame{
 		
 		//Freeze Button
 		freezeButton = new JButton("Freeze!");
+		freezeButton.setFont(fnt);
 		freezeButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
@@ -72,6 +75,7 @@ public class PurifyVirus extends JFrame{
 		
 		//Kill Button
 		finalPurification = new JButton("Purify!");
+		finalPurification.setFont(fnt);
 		finalPurification.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {

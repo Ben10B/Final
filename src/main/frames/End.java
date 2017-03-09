@@ -22,7 +22,6 @@ import main.WinLoseListener.WINLOSE;
 import sfx.BackgroundMusic;
 
 public class End extends JFrame implements WinLoseListener{
-	//private JPanel endPanel;
 	private String background = "/main/img/End.png", backgroundL = "/main/img/EndL.png";
 	private Sprite bg, bgL;
 	private JButton restartButton, menuButton, quitButton;

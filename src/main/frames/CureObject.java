@@ -24,7 +24,7 @@ public class CureObject extends JFrame{
 	private final int WIDTH = 150, HEIGHT = 150;
 	private CureListener victim;
 	private JPanel panel;
-	private JButton purifyButton;
+	private JButton cureButton;
 	private JButton cB, uB, rB, eB;
 	private JButton greenB, blueB;
 	private int count = 0;
@@ -52,9 +52,9 @@ public class CureObject extends JFrame{
 		//This action gives the user a random different puzzle to solve to cure the object.
 		int action = r.nextInt(3);
 		if(action == 0){
-			purifyButton = new JButton("Cure!");
-			purifyButton.setBackground(Color.cyan);
-			purifyButton.addActionListener(new ActionListener(){
+			cureButton = new JButton("Cure!");
+			cureButton.setBackground(Color.cyan);
+			cureButton.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg) {
 					count++;
@@ -65,32 +65,36 @@ public class CureObject extends JFrame{
 				}
 			});
 			//Once clicked, the button will be appear at a random coordinate... supposedly.
-			purifyButton.addMouseListener(new MouseAdapter(){
+			cureButton.addMouseListener(new MouseAdapter(){
 				public void mouseClicked(MouseEvent m) {
-					purifyButton.setLocation((int)(Math.random() * 150), (int)(Math.random() * 50));
+					cureButton.setLocation((int)(Math.random() * 150), (int)(Math.random() * 50));
 				}
 			});
-			panel.add(purifyButton);
+			panel.add(cureButton);
 		}else if(action == 1){
 			rB = new JButton("R");
 			rB.setActionCommand("r");
-			rB.addMouseListener(new ColorChange(rB, null, null));
 			rB.addActionListener(new Concatenator());
+			rB.setPreferredSize(new Dimension(50, 50));
+			rB.addMouseListener(new ColorChange(rB, null, null));
 			
 			uB = new JButton("U");
 			uB.setActionCommand("u");
-			uB.addMouseListener(new ColorChange(uB, null, null));
 			uB.addActionListener(new Concatenator());
+			uB.setPreferredSize(new Dimension(50, 50));
+			uB.addMouseListener(new ColorChange(uB, null, null));
 			
 			cB = new JButton("C");
 			cB.setActionCommand("C");
-			cB.addMouseListener(new ColorChange(cB, null, null));
 			cB.addActionListener(new Concatenator());
+			cB.setPreferredSize(new Dimension(50, 50));
+			cB.addMouseListener(new ColorChange(cB, null, null));
 			
 			eB = new JButton("E");
 			eB.setActionCommand("e");
-			eB.addMouseListener(new ColorChange(eB, null, null));
 			eB.addActionListener(new Concatenator());
+			eB.setPreferredSize(new Dimension(50, 50));
+			eB.addMouseListener(new ColorChange(eB, null, null));
 			int order = r.nextInt(3);
 			if(order == 0){
 				panel.add(rB);
@@ -110,6 +114,7 @@ public class CureObject extends JFrame{
 			}
 		}else if(action == 2){
 			greenB = new JButton("Ignore");
+			greenB.setPreferredSize(new Dimension(100, 50));
 			greenB.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -118,6 +123,7 @@ public class CureObject extends JFrame{
 			});
 			
 			blueB = new JButton("Cure");
+			blueB.setPreferredSize(new Dimension(100, 50));
 			blueB.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {

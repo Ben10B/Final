@@ -91,8 +91,6 @@ public class Game extends JFrame{
 		panel2.add(quitButton);
 		c.add(panel2, BorderLayout.CENTER);
 		bg = new Sprite(background);
-		
-		
 	}
 	
 	@Override

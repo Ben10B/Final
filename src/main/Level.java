@@ -30,7 +30,6 @@ public class Level extends JPanel{
 	private int size, cured/*, time = 1200*/;
 	private ArrayList<STATUSListener> gameObjects;
 	private Play play;
-	//private JLabel timeLabel;
 	private String background = "/main/img/playbg.png";
 	private Sprite bg = new Sprite(background);
 	
@@ -41,12 +40,6 @@ public class Level extends JPanel{
 		this.setLayout(null);
 		this.play = p;
 		r = new Random();
-		
-//		timeLabel = new JLabel();
-//		timeLabel.setForeground(Color.BLUE);
-//		timeLabel.setBounds(100, 10, 210, 50);
-//		this.add(timeLabel);
-		
 		
 		Virus v = new Virus(play, me);
 		boolean isWithinBounds = false;
@@ -71,9 +64,7 @@ public class Level extends JPanel{
 			go.add(new GameObject(v));
 			if(x > 0 || y > 0 || x < Game.WIDTH || y < Game.HEIGHT){
 				go.get(i).setBounds(x, y, 51, 51);
-				//poisons the 4th object
-				//if(i == 4) go.get(i).setStatus2Affected();
-				
+				if(i == 4) go.get(i).setStatus2Affected();//poisons the 4th object
 				this.add(go.get(i));
 				timeListeners.add(go.get(i));
 				gameObjects.add(go.get(i));
@@ -84,12 +75,6 @@ public class Level extends JPanel{
 		t = new Timer(100, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg) {
-				//time countdown
-//				play.time--;
-//				Font fnt = new Font("Sylfaen", 1, 25);
-//				timeLabel.setFont(fnt);
-//				timeLabel.setText("Countdown: "+Integer.toString(play.time));
-//				timeLabel.invalidate();
 				//all tick methods
 				for(TimeListener tickee : timeListeners){
 					tickee.tick();

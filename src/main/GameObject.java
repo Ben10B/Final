@@ -25,8 +25,8 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 		
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent m) {
-				if(state == STATUS.Effected){
-					CureObject p = new CureObject();
+				if(state == STATUS.Effected && m.getClickCount() == 1){
+					CureObject p = new CureObject();		
 					p.setVictim(me);
 					p.setVisible(true);
 				}
