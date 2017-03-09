@@ -62,7 +62,7 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 		if(speedX == 0){
 			freeze--;
 			if(freeze == 0){
-				speedX = 25;
+				speedX = 30;
 				speedY = speedX;
 				freeze = 120;
 			}
@@ -70,23 +70,23 @@ public class Virus extends JButton implements TimeListener, PurifyListener{
 		
 		if(speedX != 0 && this.getX() <= 21){
 			stuckInBounds++;
-			if(stuckInBounds == 4){
+			if(stuckInBounds == 10){
 				this.setLocation(Game.WIDTH/2, Game.HEIGHT/2);
 			}
 		}else if(speedY != 0 && this.getY() <= 21){
 			stuckInBounds++;
-			if(stuckInBounds == 4){
+			if(stuckInBounds == 10){
 				this.setLocation(Game.WIDTH/2, Game.HEIGHT/2);
 			}
 		}
 		if(speedX != 0 && this.getY() >= Game.WIDTH-100){
 			stuckInBounds++;
-			if(stuckInBounds == 4){
+			if(stuckInBounds == 10){
 				this.setLocation(Game.WIDTH/2, Game.HEIGHT/2);
 			}
 		}else if(speedY != 0 && this.getY() >= Game.HEIGHT-100){
 			stuckInBounds++;
-			if(stuckInBounds == 4){
+			if(stuckInBounds == 10){
 				this.setLocation(Game.WIDTH/2, Game.HEIGHT/2);
 			}
 		}

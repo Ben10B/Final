@@ -7,8 +7,7 @@ import sfx.BackgroundMusic;
 public class Window{
 
 	public static void main(String[] args){
-		//Game g = new Game();
-		Play g = new Play(null);
+		Game g = new Game();
 		g.setVisible(true);
 		BackgroundMusic bm = new BackgroundMusic();
 		//bm.playMusic();

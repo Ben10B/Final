@@ -28,7 +28,7 @@ public class CureObject extends JFrame{
 	private JButton greenB, blueB;
 	private int count = 0;
 	private String spellCure = "";
-	private String[] effected = {"Help me!", "I'm poisoned!", "Hurry up!"};
+	private String[] effected = {"Help me!", "I'm poisoned!", "Hurry up!", "I'm gonna die!", "Save someone else, please.."};
 	private Random r = new Random();
 	
 	public CureObject(){
@@ -46,7 +46,7 @@ public class CureObject extends JFrame{
 		c.add(panel);
 		
 		JLabel label = new JLabel();
-		label.setText(effected[r.nextInt(3)]);
+		label.setText(effected[r.nextInt(5)]);
 		this.add(label, BorderLayout.SOUTH);
 		//This action gives the user a random different puzzle to solve to cure the object.
 		int action = r.nextInt(3);
