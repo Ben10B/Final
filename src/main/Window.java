@@ -10,7 +10,7 @@ public class Window{
 		Game g = new Game();
 		g.setVisible(true);
 		BackgroundMusic bm = new BackgroundMusic();
-		//bm.playMusic();
+		bm.playMusic();
 	}
 
 }

@@ -32,6 +32,9 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 				}
 			}
 		});
+		if(this.getBounds().intersects(this.getBounds())){
+			this.setLocation(this.getX()+this.getWidth(), this.getY()+this.getHeight());
+		}
 	}
 
 	@Override
@@ -48,6 +51,7 @@ public class GameObject extends JButton implements TimeListener, CureListener, S
 			state = STATUS.Healthy;
 			invincibility = 180;
 		}
+		
 	} 
 	
 	public boolean collision(){
